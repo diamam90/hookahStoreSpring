@@ -1,0 +1,142 @@
+<!doctype html>
+<meta charset="UTF-8">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.css">
+</head>
+<body>
+<header>
+    <div class="row bg-dark">
+        <div class="px-4 py-2 col-3">
+             <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </div>
+        <div class="px-4 py-2 col-7 text-start text-white">
+            <h6>HookahStore <small>Интернет-магазин</small></h6>
+        </div>
+        <div class="px-2 py-2 col-2">
+            <button type="button" class="btn btn-light text-dark me-2">Login</button>
+            <button type="button" class="btn btn-primary">Sign-up</button>
+        </div>
+    </div>
+</header>
+<div class="row">
+    <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+        <div class="flex-shrink-0 p-3 bg-white" style="width: 300px;">
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#hookah-collapse" aria-expanded="false">
+                        Кальяны
+                    </button>
+                    <div class="collapse" id="hookah-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">Darkside</a></li>
+                            <li><a href="#" class="link-dark rounded">Mamay</a></li>
+                            <li><a href="#" class="link-dark rounded">Hoob</a></li>
+                            <li><a href="#" class="link-dark rounded">Solomon</a></li>
+                            <li><a href="#" class="link-dark rounded">Union hookah</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="border-top my-3"></li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tabacco-collapse" aria-expanded="false">
+                        Табаки
+                    </button>
+                    <div class="collapse" id="tabacco-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">Al faker</a></li>
+                            <li><a href="#" class="link-dark rounded">DarkSide</a></li>
+                            <li><a href="#" class="link-dark rounded">Burn</a></li>
+                            <li><a href="#" class="link-dark rounded">Daily hookah</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="border-top my-3"></li>
+            </ul>
+        </div>
+    </aside>
+    <main class="col-xs-12 col-sm-6 col-md-4 col-lg-9 col-xlg-10">
+        <div class="row py-3">
+         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="card">
+                    <img src="\media\2.JPEG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Особое обращение с заголовком</h5>
+                        <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                        <a class="btn btn-primary pull-right buy-btn" data-id-product="productId">Купить</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="card">
+                    <img src="\media\2.JPEG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Особое обращение с заголовком</h5>
+                        <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                        <a class="btn btn-primary pull-right buy-btn" data-id-product="productId">Купить</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="card">
+                    <img src="\media\3.JPEG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Особое обращение с заголовком</h5>
+                        <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                        <a class="btn btn-primary pull-right buy-btn" data-id-product="productId">Купить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row py-3">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="card">
+                        <img src="\media\1.JPEG" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Табак элемент</h5>
+                            <p class="card-text">Кальянная смесь на основе листа Virginia</p>
+                            <a class="btn btn-primary pull-right buy-btn" data-id-product="productId">Купить</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="card">
+                        <img src="\media\2.JPEG" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Табак элемент</h5>
+                            <p class="card-text">Кальянная смесь на основе листа Virginia</p>
+                            <a class="btn btn-primary pull-right buy-btn" data-id-product="productId">Купить</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="card">
+                    <img src="\media\3.JPEG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Табак элемент</h5>
+                        <p class="card-text">Кальянная смесь на основе листа Virginia</p>
+                        <a class="btn btn-primary pull-right buy-btn" data-id-product="productId">Купить</a>
+                    </div>
+                </div>
+            </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="card">
+                        <img src="\media\3.JPEG" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Табак элемент</h5>
+                            <p class="card-text">Кальянная смесь на основе листа Virginia</p>
+                            <a class="btn btn-primary pull-right buy-btn" data-id-product="productId">Купить</a>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+    </main>
+</div>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/jquery.js"></script>
+</body>
+</html>
+<!--
+<div class="py-2 col-xs-12 col-sm-3 col-md-2 col-lg-2">
