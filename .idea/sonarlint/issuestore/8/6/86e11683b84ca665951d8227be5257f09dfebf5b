@@ -1,6 +1,0 @@
-
-r	java:S116"QRename this field "LOGGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÍ£ïùÿÿÿÿ8ÚÜùÖÈ/
-z
-java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(ãë»ìÿÿÿÿÿ8“¾±áË/
-u
-java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(³’é…8ÚÜùÖÈ/
