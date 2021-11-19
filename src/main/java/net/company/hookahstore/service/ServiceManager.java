@@ -2,6 +2,7 @@ package net.company.hookahstore.service;
 
 import net.company.hookahstore.service.impl.OrderServiceImpl;
 import net.company.hookahstore.service.impl.ProductServiceImpl;
+import net.company.hookahstore.service.impl.VKSocialService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ public class ServiceManager {
     private final BasicDataSource dataSource;
     private final ProductService productService;
     private final OrderService orderService;
+    private final SocialService socialService;
     private final Properties applicationProperties = new Properties();
 
     public static ServiceManager getInstance(ServletContext context) {
@@ -33,9 +35,10 @@ public class ServiceManager {
         dataSource = createDataSource();
         productService = new ProductServiceImpl(dataSource);
         orderService = new OrderServiceImpl(dataSource);
+        socialService = new VKSocialService(this);
     }
 
-    private String getApplicationProperty(String key) {
+    public String getApplicationProperty(String key) {
         return applicationProperties.getProperty(key);
     }
 
@@ -72,5 +75,6 @@ public class ServiceManager {
     public OrderService getOrderService(){
         return orderService;
     }
+    public SocialService getSocialService() {return socialService;}
 }
 

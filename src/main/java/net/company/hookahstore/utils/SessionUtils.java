@@ -1,9 +1,12 @@
 package net.company.hookahstore.utils;
 
 import net.company.hookahstore.Constants;
+import net.company.hookahstore.model.CurrentAccount;
 import net.company.hookahstore.model.ShoppingCart;
+import net.company.hookahstore.model.SocialAccount;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,4 +34,14 @@ public class SessionUtils {
     public static void updateCurrentShoppingCartCookie(String cookieValue, HttpServletRequest req, HttpServletResponse resp){
         WebUtils.setCookie(Constants.Cookie.SHOPPING_CART.getName(),cookieValue,Constants.Cookie.SHOPPING_CART.getTtl(),resp);
     }
+    public static boolean isCurrentAccountCreated (HttpServletRequest req){
+        return req.getSession().getAttribute(Constants.CURRENT_ACCOUNT)!=null;
+    }
+    public static void setCurrentAccount(HttpServletRequest req, CurrentAccount currentAccount){
+        req.getSession().setAttribute(Constants.CURRENT_ACCOUNT,currentAccount);
+    }
+    public static CurrentAccount getCurrentAccount(HttpServletRequest req){
+        return (CurrentAccount )req.getSession().getAttribute(Constants.CURRENT_ACCOUNT);
+    }
+    private SessionUtils(){}
 }
