@@ -20,7 +20,7 @@ public class SignInController extends AbstractController {
         if (SessionUtils.isCurrentAccountCreated(req)){
             RoutingUtils.redirect("/my-orders",req,resp);
         } else {
-            RoutingUtils.redirect(getSocialService().getAuthorizeUrl(), req,resp);
+           // RoutingUtils.redirect(getSocialService().getAuthorizeUrl(), req,resp);
         }
     }
 
@@ -33,7 +33,7 @@ public class SignInController extends AbstractController {
            if (targetUrl!=null){
                req.getSession().setAttribute(Constants.SUCCESS_REDIRECT_AFTER_SIGNIN,targetUrl);
            }
-           RoutingUtils.redirect(getSocialService().getAuthorizeUrl(),req,resp);
+       //    RoutingUtils.redirect(getSocialService().getAuthorizeUrl(),req,resp);
        }
     }
 }

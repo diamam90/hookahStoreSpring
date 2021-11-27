@@ -14,7 +14,7 @@ import java.io.IOException;
 public class AsideMoreController extends AbstractController {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("products",getProductService().listProductByAside(req,getPage(req), Constants.ITEMS_PER_PAGE));
+        req.setAttribute("products",getProductService().listProductByCategory(req,getPage(req), Constants.ITEMS_PER_PAGE));
         RoutingUtils.forwardToFragment("product-list.jsp",req,resp);
     }
 }

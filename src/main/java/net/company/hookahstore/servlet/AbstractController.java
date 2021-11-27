@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 public class AbstractController extends HttpServlet {
     private ProductService productService;
     private OrderService orderService;
-    private SocialService socialService;
 
     protected final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
@@ -22,11 +21,9 @@ public class AbstractController extends HttpServlet {
     public void init()  {
         productService = ServiceManager.getInstance(getServletContext()).getProductService();
         orderService = ServiceManager.getInstance(getServletContext()).getOrderService();
-        socialService = ServiceManager.getInstance(getServletContext()).getSocialService();
     }
     public ProductService getProductService(){ return productService;}
     public OrderService getOrderService(){return orderService;}
-    public SocialService getSocialService() {return socialService;}
 
     public final int getPage(HttpServletRequest req){
         try {

@@ -20,7 +20,7 @@ public class FromSocialController  extends AbstractController {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String code = req.getParameter("code");
         String targetUrl= (String)req.getSession().getAttribute("target");
-        req.getSession().setAttribute(Constants.CURRENT_ACCOUNT, getSocialService().getSocialAccount(code));
+       // req.getSession().setAttribute(Constants.CURRENT_ACCOUNT, getSocialService().getSocialAccount(code));
         RoutingUtils.forwardToPage(targetUrl,req,resp);
     }
 }

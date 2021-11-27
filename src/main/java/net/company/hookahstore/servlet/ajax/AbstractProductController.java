@@ -37,6 +37,14 @@ public abstract class AbstractProductController extends AbstractController {
         JSONObject cardStatistics = new JSONObject();
         cardStatistics.put("totalCost",shoppingCart.getTotalCost());
         cardStatistics.put("totalCount", shoppingCart.getTotalCount());
+        if (req.getAttribute("id")==null){
+            cardStatistics.put("subTotal",0);
+            cardStatistics.put("count",0);
+        } else {
+            cardStatistics.put("subTotal",shoppingCart.getProducts().get((Long)(req.getAttribute("id"))).getSubTotal());
+            cardStatistics.put("count",shoppingCart.getProducts().get((Long)(req.getAttribute("id"))).getCount());
+        }
+
         RoutingUtils.sendJSON(cardStatistics,req,resp);
     }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 public interface OrderService {
     void addProductToShoppingCart(ProductForm productForm, ShoppingCart shoppingCart);
     void removeProductFromShoppingCart(ProductForm productForm, ShoppingCart shoppingCart);
+    void updateShoppingCart(ProductForm productForm, ShoppingCart shoppingCart);
     String selializeShoppingCart(ShoppingCart shoppingCart);
     ShoppingCart deserializeShoppingCart(String cookieValue);
     /* TODO: CurrentAccount authentificate(SocialAccount socialAccount);

@@ -14,7 +14,7 @@ public interface ProductService {
 
     int countAllProduct();
 
-    List<Product> listProductByAside(HttpServletRequest req, int page, int limit);
+    List<Product> listProductByCategory(HttpServletRequest req, int page, int limit);
 
     int countProductByAside(HttpServletRequest req);
 

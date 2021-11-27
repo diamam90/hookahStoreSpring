@@ -6,10 +6,8 @@ import net.company.hookahstore.form.ProductForm;
 import net.company.hookahstore.jdbc.JDBCUtils;
 import net.company.hookahstore.jdbc.ResultSetHandler;
 import net.company.hookahstore.jdbc.ResultSetHandlerFactory;
-import net.company.hookahstore.model.CurrentAccount;
 import net.company.hookahstore.model.ShoppingCart;
 import net.company.hookahstore.model.ShoppingCartItem;
-import net.company.hookahstore.model.SocialAccount;
 import net.company.hookahstore.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +43,19 @@ public class OrderServiceImpl  implements OrderService {
     @Override
     public void removeProductFromShoppingCart(ProductForm productForm, ShoppingCart shoppingCart) {
         shoppingCart.removeProduct(productForm.getIdProduct(),productForm.getCount());
+    }
+
+    @Override
+    public void updateShoppingCart(ProductForm productForm, ShoppingCart shoppingCart) {
+        Long id = productForm.getIdProduct();
+        Product product=shoppingCart.getProducts().get(id).getProduct();
+        int countFromPage = productForm.getCount();
+        int countFromCart = shoppingCart.getProducts().get(id).getCount();
+        if (countFromCart<countFromPage){
+            shoppingCart.addProduct(product,countFromPage-countFromCart);
+        } else if(countFromCart>countFromPage){
+              shoppingCart.removeProduct(id,countFromCart-countFromPage);
+        }
     }
 
     @Override

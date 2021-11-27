@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<Product> listProductByAside(HttpServletRequest req, int page, int limit) {
+    public List<Product> listProductByCategory(HttpServletRequest req, int page, int limit) {
         int offset = (page - 1) * limit;
         try (Connection c = dataSource.getConnection()) {
             StringBuilder query=buildQuery(req,"select p.*, c.ru_name as category, pr.name as producer from product p, category c, producer pr where " +

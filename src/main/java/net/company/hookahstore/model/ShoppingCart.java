@@ -58,6 +58,7 @@ public class ShoppingCart implements Serializable {
         for (ShoppingCartItem item: getItems()){
             totalCount+=item.getCount();
             totalCost=totalCost.add(item.getProduct().getPrice().multiply(BigDecimal.valueOf(item.getCount())));
+            item.refreshSubTotal();
          }
     }
 

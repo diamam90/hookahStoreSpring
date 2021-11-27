@@ -358,7 +358,7 @@ public class TestDataGenerator {
         final int productCount;
 
         public Producer(String name) {
-            this(name, RANDOM.nextInt(13) + 2);
+            this(name, RANDOM.nextInt(25) + 2);
         }
 
         public Producer(String name, int productCount) {

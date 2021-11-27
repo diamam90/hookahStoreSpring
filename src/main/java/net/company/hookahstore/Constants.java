@@ -1,7 +1,7 @@
 package net.company.hookahstore;
 
 public class Constants {
-    public final static int ITEMS_PER_PAGE = 18;
+    public final static int ITEMS_PER_PAGE = 8;
     public final static String CATEGORY_LIST = "CATEGORY_LIST";
     public final static String PRODUCER_LIST = "PRODUCER_LIST";
     public final static String PRODUCER_BY_CATEGORY_MAP = "PRODUCER_BY_CATEGORY_MAP";
