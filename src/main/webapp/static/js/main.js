@@ -8,7 +8,7 @@
             $this.removeClass('loading').addClass('added')
         }, 1000);
         return false;
-    } );
+    });
 
     $('.vertical-megamenu .dropdown').on('hover', function (e) {
         $(this).find('> ul.dropdown-menu').toggle(300)
@@ -84,6 +84,9 @@
     });
 
     var deleteProduct = function () {
+        $('form.shopping-cart').submit(function (e) {
+            e.preventDefault();
+        });
         var product = $(this).parent().parent();
         var idProduct = parseInt(product.attr('id'));
         var count = product.find('.input-text.qty.text').val();
@@ -99,12 +102,12 @@
                 if (data.totalCount == 0) {
                     window.location.href = '/products';
                 } else {
-                var tr = $('[name="update_cart"][data-id-product="product' + idProduct + '"]').parent().parent();
-                tr.remove();
-                product.remove();
-                $('.order-total .woocommerce-Price-amount.amount').text(data.totalCost);
-                $('.cart-contents .minicart-number').text(data.totalCount);
-                $('.cart-contents .amount').text(data.totalCost);
+                    var tr = $('[name="update_cart"][data-id-product="product' + idProduct + '"]').parent().parent();
+                    tr.remove();
+                    product.remove();
+                    $('.order-total .woocommerce-Price-amount.amount').text(data.totalCost);
+                    $('.cart-contents .minicart-number').text(data.totalCount);
+                    $('.cart-contents .amount').text(data.totalCost);
                 }
             },
             error: function (xhr) {
@@ -120,6 +123,9 @@
 
 
     var updateCart = function () {
+        $('form.shopping-cart').submit(function (e) {
+            e.preventDefault();
+        });
         var id = $(this).attr('data-id-product').replace("product", "");
         var product = $('.cart_item[id=' + id + ']');
         var count = product.find('.quantity input').val();
@@ -196,9 +202,54 @@
             }
         });
     }
-
-
-    var addProductFromQuickView = function(){
+    /*
+    var loadProductForPage = function () {
+        var pageCount = parseInt($('#productList').attr('data-page-count'));
+        var pageNumber = parseInt($('#productList').attr('data-page-number'));
+        var neededPage = parseInt($(this).text());
+        var url = '/ajax/html/more' + location.pathname + '?page=' + neededPage;
+        $.ajax({
+            url: url,
+            success: function (html) {
+                $('#main').replaceWith(html);
+                $('#productList').attr('data-page-number', neededPage);
+                $('#productList').attr('data-page-count', pageCount);
+                if (neededPage == pageCount) {
+                    $('#productList a.page-numbers.next').parent().hide();
+                    $('#productList a.page-numbers.last').parent().hide();
+                    $('#productList span.page-numbers.dots-next').parent().hide();
+                }
+                if (pageCount - neededPage == 2) {
+                    $('#productList span.page-numbers.dots-next').parent().hide();
+                }
+                if (pageCount - neededPage == 1) {
+                    $('#productList a.page-numbers.next').parent().hide();
+                    $('#productList span.page-numbers.dots-next').parent().hide();
+                }
+                if (neededPage == 2) {
+                    $('#productList span.page-numbers.dots-prev').parent().hide();
+                    $('#productList a.page-numbers.prev').parent().hide();
+                }
+                if (neededPage == 3) {
+                    $('#productList span.page-numbers.dots-prev').parent().hide();
+                }
+                $('#productList a.page-numbers.current').text(neededPage);
+                $('#productList a.page-numbers.prev').text(neededPage - 1);
+                $('#productList a.page-numbers.next').text(neededPage + 1);
+                $('#productList a.page-numbers.first').text(1);
+                $('#productList a.page-numbers.last').text(pageCount);
+                initBtn();
+            },
+            error: function () {
+                alert('Error');
+            }
+        });
+    };
+*/
+    var addProductFromQuickView = function () {
+        $('#addProductPopup form').submit(function (e) {
+            e.preventDefault();
+        });
         var idProduct = $('#addProductPopup').attr('data-id-product');
         var count = $('#addProductPopup .quantity .count').val();
         $.ajax({
@@ -222,53 +273,57 @@
             }
         });
     }
-
-    $('a[title="Quick View Product"]').click(showPopup);
-    $('input[name="update_cart"]').click(updateCart);
-    $('#addProductPopup .count').change(changeProductCount);
-    $('a.add_to_cart_button').click(addProductToCartFromPage);
-    $('.single_add_to_cart_button').click(addProductFromQuickView);
-    $('.product-remove .remove').click(deleteProduct);
-
-    $('a[href="#cpanel-form"]').on('click', function (e) {
-        e.preventDefault();
-        var parent = $('#cpanel-form'),
-            right = parent.css('right'),
-            width = parent.width();
-        if (parseFloat(right) < -10) {
-            parent.animate({
-                right: '0px',
-            }, "slow")
-        } else {
-            parent.animate({
-                right: '-' + width,
-            }, "slow")
-        }
-        if ($(this).hasClass('active')) {
-            $(this).removeClass('active')
-        } else {
-            $(this).addClass('active')
-        }
-        return false;
-    });
-
-
-    $(".wpb_accordion").each(function (element) {
-        var $this = $(this);
-        var $this_second = $(this);
-        var interval = ($this_second.attr("data-interval"), !isNaN($(this).data("active-tab")) && 0 < parseInt($this_second.data("active-tab"), 10) && parseInt($this_second.data("active-tab")) - 1, 10);
-        var collapsible = !1 === interval || "yes" === $this_second.data("collapsible");
-        $this = $this_second.find(".wpb_accordion_wrapper").accordion({
-            header: "> div > h3",
-            autoHeight: !1,
-            heightStyle: "content",
-            active: interval,
-            collapsible: collapsible,
-            navigation: !0,
-            change: function (element, $this) {
-                "undefined" != typeof $.fn.isotope && $this.newContent.find(".isotope").isotope("layout"), carouselBehaviour($this.newPanel)
+    var initBtn = function () {
+        $('a[title="Quick View Product"]').click(showPopup);
+        $('input[name="update_cart"]').click(updateCart);
+        $('#addProductPopup .count').change(changeProductCount);
+        $('a.add_to_cart_button').click(addProductToCartFromPage);
+        $('.single_add_to_cart_button').click(addProductFromQuickView);
+        $('.product-remove .remove').click(deleteProduct);
+        //$('a.page-numbers').click(loadProductForPage);
+        $('a[href="#cpanel-form"]').on('click', function (e) {
+            e.preventDefault();
+            var parent = $('#cpanel-form'),
+                right = parent.css('right'),
+                width = parent.width();
+            if (parseFloat(right) < -10) {
+                parent.animate({
+                    right: '0px',
+                }, "slow")
+            } else {
+                parent.animate({
+                    right: '-' + width,
+                }, "slow")
             }
-        }), !0 === $this_second.data("vcDisableKeydown") && ($this.data("uiAccordion")._keydown = function () {
-        })
-    })
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active')
+            } else {
+                $(this).addClass('active')
+            }
+            return false;
+        });
+
+
+        $(".wpb_accordion").each(function (element) {
+            var $this = $(this);
+            var $this_second = $(this);
+            var interval = ($this_second.attr("data-interval"), !isNaN($(this).data("active-tab")) && 0 < parseInt($this_second.data("active-tab"), 10) && parseInt($this_second.data("active-tab")) - 1, 10);
+            var collapsible = !1 === interval || "yes" === $this_second.data("collapsible");
+            $this = $this_second.find(".wpb_accordion_wrapper").accordion({
+                header: "> div > h3",
+                autoHeight: !1,
+                heightStyle: "content",
+                active: interval,
+                collapsible: collapsible,
+                navigation: !0,
+                change: function (element, $this) {
+                    "undefined" != typeof $.fn.isotope && $this.newContent.find(".isotope").isotope("layout"), carouselBehaviour($this.newPanel)
+                }
+            }), !0 === $this_second.data("vcDisableKeydown") && ($this.data("uiAccordion")._keydown = function () {
+            })
+        });
+    };
+    initBtn();
+
+
 }(jQuery))

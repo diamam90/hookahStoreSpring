@@ -24,7 +24,7 @@
 
     <!-- OPEN LIBS CSS -->
     <link rel="stylesheet" href="/static/css/theme/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/static/css/owl-carousel/owl.carousel.min.css"/>
+
 
     <link rel="stylesheet" href="/static/css/js_composer/js_composer.min.css"/>
 
@@ -35,7 +35,6 @@
     <link rel="stylesheet" href="/static/css/woocommerce/woocommerce-layout.css"/>
     <link rel="stylesheet" href="/static/css/woocommerce/woocommerce-smallscreen.css"/>
     <link rel="stylesheet" href="/static/css/woocommerce/woocommerce.css"/>
-    <link rel="stylesheet" href="/static/css/theme/wishtlist.css"/>
     <link rel="stylesheet" href="/static/css/theme/app-blue.min.css" id="theme"/>
     <link rel="stylesheet" href="/static/css/theme/app-responsive.min.css"/>
     <link rel="stylesheet" href="/static/css/theme/flexslider.min.css"/>
@@ -46,24 +45,7 @@
 </head>
 
 <body id="body_wrapper" class="archive woocommerce woocommerce-page vc_responsive">
-<!-- Preloading Screen -->
-<div class="ip-header">
-    <h1 class="ip-logo">
-        <a>
-            <img src="/static/images/theme_logo.png" alt="sw shoppy"/>
-        </a>
-    </h1>
-    <div class="ip-loader">
-        <svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
-            <path class="ip-loader-circlebg"
-                  d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
-            <path id="ip-loader-circle" class="ip-loader-circle"
-                  d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"
-                  style="stroke-dashoffset: 192.617; stroke-dasharray: 192.617;"></path>
-        </svg>
-    </div>
-</div>
-<!-- End Preloading Screen -->
+
 
 <div class="body-wrapper theme-clearfix">
     <header>
@@ -87,21 +69,11 @@
 <!-- BOOTSTRAP 3.3.7 JS -->
 <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
 
-<!-- OPEN LIBS JS -->
-<script type="text/javascript" src="/static/js/owl-carousel/owl.carousel.min.js"></script>
-<script type="text/javascript" src="/static/js/js.cookie.min.js"></script>
-
-<!-- PLUGINS JS -->
-<script type="text/javascript" src="/static/js/sw_woocommerce/category-ajax.min.js"></script>
-<script type="text/javascript" src="/static/js/sw_woocommerce/slick.min.js"></script>
-<script type="text/javascript" src="/static/js/colorbox/jquery.colorbox-min.js"></script>
-<script type="text/javascript" src="/static/js/sw_core/jquery.fancybox.pack.js"></script>
-
 
 <!-- THEME JS -->
 <script src="/static/js/main.js"></script>
 <script src="/static/js/megamenu.min.js"></script>
-<script src="/static/js/pathLoader.min.js"></script>
+
 
 <!-- CUSTOM JS-->
 <script type="text/javascript">
@@ -119,9 +91,6 @@
             $("ul.products-loop").fadeOut(300, function () {
                 $(this).removeClass("list").fadeIn(300).addClass('grid')
             })
-        });
-        jQuery('.phone-icon-search').on('click', function () {
-            jQuery('.sm-serachbox-pro').toggle("slide")
         });
         var sticky_navigation_offset = $(".yt-header-middle").offset();
         var sticky_navigation_offset_top = sticky_navigation_offset.top;

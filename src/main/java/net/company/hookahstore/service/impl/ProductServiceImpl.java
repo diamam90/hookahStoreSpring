@@ -116,22 +116,35 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> listProductBySearch(String searchQuery) {
+    public List<Product> listProductBySearch(String category,String searchQuery) {
         try (Connection c = dataSource.getConnection()){
             String param = "%"+searchQuery+"%";
-            return JDBCUtils.select(c,"select p.*, c.ru_name as category, pr.name as producer from product p, category c, producer pr " +
-                    "where p.id_category=c.id and p.id_producer=pr.id and (c.name ilike ? or pr.name ilike ? or p.name ilike ?)", productsResultSetHandler,param,param,param);
+            if (category.equals("all")) {
+                return JDBCUtils.select(c, "select p.*, c.ru_name as category, pr.name as producer from product p, category c, producer pr " +
+                        "where p.id_category=c.id and p.id_producer=pr.id and (c.name ilike ? or pr.name ilike ? or p.name ilike ?)", productsResultSetHandler, param, param, param);
+            } else {
+                int categoryId = Integer.parseInt(category);
+                return JDBCUtils.select(c, "select p.*, c.ru_name as category, pr.name as producer from product p, category c, producer pr " +
+                        "where p.id_category=c.id and p.id_producer=pr.id and (c.name ilike ? or pr.name ilike ? or p.name ilike ?) and c.id = ?", productsResultSetHandler, param, param, param, categoryId);
+            }
+
         }catch (SQLException e){
             throw new InternalServerErrorException(e.getMessage(),e);
         }
     }
 
     @Override
-    public int countProductBySearch(String searchQuery) {
+    public int countProductBySearch(String category,String searchQuery) {
         try (Connection c = dataSource.getConnection()){
             String param = "%"+searchQuery+"%";
-            return JDBCUtils.select(c,"select count(*) from product p, category c, producer pr " +
-                    "where p.id_category=c.id and p.id_producer=pr.id and (c.name ilike ? or pr.name ilike ? or p.name ilike ?)", countResultSetHandler,param,param,param);
+            if (category.equals("all")) {
+                return JDBCUtils.select(c, "select count(*) from product p, category c, producer pr " +
+                        "where p.id_category=c.id and p.id_producer=pr.id and (c.name ilike ? or pr.name ilike ? or p.name ilike ?)", countResultSetHandler, param, param, param);
+            } else {
+                int categoryId = Integer.parseInt(category);
+                return JDBCUtils.select(c, "select count(*) from product p, category c, producer pr " +
+                        "where p.id_category=c.id and p.id_producer=pr.id and (c.name ilike ? or pr.name ilike ? or p.name ilike ?) and c.id=?", countResultSetHandler, param, param, param,categoryId);
+            }
         }catch (SQLException e){
             throw new InternalServerErrorException(e.getMessage(),e);
         }

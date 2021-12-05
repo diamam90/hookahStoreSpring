@@ -83,7 +83,7 @@
                                 <li class="dropdown menu-my-account ya-menu-custom level1">
                                     <a href="#" class="item-link dropdown-toggle">
 												<span class="have-title">
-													<span class="menu-title">My Account</span>
+													<span class="menu-title">${currentAccount!=null? currentAccount.name:"My Account"}</span>
 												</span>
                                     </a>
 
@@ -99,7 +99,7 @@
                                         <li class="one-column menu-my-account">
                                             <a href="/static/home_style_1_my_account.html">
 														<span class="have-title">
-															<span class="menu-title">My Account</span>
+															<span class="menu-title">My account</span>
 														</span>
                                             </a>
                                         </li>
@@ -143,12 +143,12 @@
                                 <strong>Sign in Or Register</strong>
                             </div>
 
-                            <form class="login">
+                            <form class="login" action="/login" method="post">
                                 <div class="block-content" style="height: 238px;">
                                     <div class="col-reg registered-account">
                                         <div class="email-input">
                                             <input type="text" class="form-control input-text username"
-                                                   name="username" id="username" placeholder="Username"/>
+                                                   name="login" id="login" placeholder="Username"/>
                                         </div>
 
                                         <div class="pass-input">
@@ -156,31 +156,17 @@
                                                    placeholder="Password" name="password" id="password"/>
                                         </div>
 
-                                        <div class="ft-link-p">
-                                            <a href="/static/home_style_1_lost_pass.html"
-                                               title="Forgot your password">Forgot your password?</a>
-                                        </div>
 
                                         <div class="actions">
                                             <div class="submit-login">
-                                                <input type="submit" class="button btn-submit-login" name="login"
-                                                       value="Login"/>
+                                                <input type="submit" class="button btn-submit-login"/>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-reg login-customer">
-                                        <h2>NEW HERE?</h2>
-                                        <p class="note-reg">Registration is free and easy!</p>
 
-                                        <ul class="list-log">
-                                            <li>Faster checkout</li>
-
-                                            <li>Save multiple shipping addresses</li>
-
-                                            <li>View and track orders and more</li>
-                                        </ul>
-                                        <a href="/static/home_style_1_create_acc.html" title="Register"
+                                        <a href="/create-account" title="Register"
                                            class="btn-reg-popup">Create an account</a>
                                     </div>
 
@@ -314,18 +300,17 @@
                                     <div class="search-pro col-lg-9 col-md-8 col-sm-9 col-xs-9 no-padding-l">
                                         <a class="phone-icon-search fa fa-search" href="#" title="Search"></a>
 
-                                        <div id="sm_searchbox_pro" class="sm-serachbox-pro">
+                                        <div id="sm_searchbox_pro" class="sm-searchbox-pro">
                                             <div class="sm-searchbox-content">
-                                                <form method="get" id="searchform_special" action="#">
+                                                <form id="searchform_special" action="/search">
                                                     <div class="form-search">
                                                         <div class="cat-wrapper">
                                                             <div class="selector" id="uniform-cat">
                                                                 <label class="label-search">
-                                                                    <select name="search_category"
-                                                                            class="s1_option">
-                                                                        <option>Все категории</option>
+                                                                    <select name="cat">
+                                                                        <option value="all">Все категории</option>
                                                                         <c:forEach var="category" items="${CATEGORY_LIST}">
-                                                                        <option>${category.ruName}</option>
+                                                                        <option value="${category.id}">${category.ruName}</option>
                                                                         </c:forEach>
                                                                     </select>
                                                                 </label>
@@ -333,7 +318,7 @@
                                                         </div>
 
                                                         <div class="input-search">
-                                                            <input type="text" value=""
+                                                            <input type="text" value="" name="query"
                                                                    placeholder="Найти товар"/>
                                                         </div>
 

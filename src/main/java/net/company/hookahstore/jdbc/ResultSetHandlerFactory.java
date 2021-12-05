@@ -1,5 +1,6 @@
 package net.company.hookahstore.jdbc;
 
+import net.company.hookahstore.entity.Account;
 import net.company.hookahstore.entity.Category;
 import net.company.hookahstore.entity.Producer;
 import net.company.hookahstore.entity.Product;
@@ -45,6 +46,20 @@ public class ResultSetHandlerFactory {
             pr.setName(rs.getString("name"));
             pr.setProductCount(rs.getInt("product_count"));
             return pr;
+        }
+    };
+    public final static ResultSetHandler<Account> ACCOUNT_RESULT_SET_HANDLER = new ResultSetHandler<Account>(){
+        @Override
+        public Account handle(ResultSet rs) throws SQLException {
+            Account account = new Account();
+            account.setId(rs.getLong("id"));
+            account.setLogin(rs.getString("login"));
+            account.setPassword(rs.getString("password"));
+            account.setName(rs.getString("name"));
+            account.setLastname(rs.getString("last_name"));
+            account.setPhone(rs.getString("phone"));
+            account.setEmail(rs.getString("email"));
+            return account;
         }
     };
 

@@ -22,9 +22,9 @@ public interface ProductService {
 
     List<Producer> listAllProducers();
 
-    List<Product> listProductBySearch(String searchQuery);
+    List<Product> listProductBySearch(String category,String searchQuery);
 
-    int countProductBySearch(String searchQuery);
+    int countProductBySearch(String category,String searchQuery);
 
     Map<Category, List<Producer>> mapProducerByCategory();
 }

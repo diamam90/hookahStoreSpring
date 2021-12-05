@@ -17,10 +17,17 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServiceManager serviceManager = ServiceManager.getInstance(req.getServletContext());
-        List<Product> products = serviceManager.getProductService().listProductBySearch(req.getParameter("query"));
-        int totalCount = serviceManager.getProductService().countProductBySearch(req.getParameter("query"));
-        req.setAttribute("products",products);
-        req.setAttribute("totalCount",totalCount);
-        RoutingUtils.forwardToPage("search.jsp",req,resp);
+        String query = req.getParameter("query");
+        String category = req.getParameter("cat");
+        if (category!= null){
+            List<Product> products = serviceManager.getProductService().listProductBySearch(req.getParameter("cat"),req.getParameter("query"));
+            int totalCount = serviceManager.getProductService().countProductBySearch(req.getParameter("cat"),req.getParameter("query"));
+            req.setAttribute("products",products);
+            req.setAttribute("totalCount",totalCount);
+            RoutingUtils.forwardToPage("search.jsp",req,resp);
+        } else {
+            RoutingUtils.forwardToPage("products.jsp",req,resp);
+        }
+
     }
 }

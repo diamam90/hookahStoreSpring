@@ -38,6 +38,7 @@ public class AutoRestoreShoppingCartFilter extends AbstractFilter {
             }
             req.getSession().setAttribute(SHOPPING_CART_DESEREALIZATION_DONE,Boolean.TRUE);
         }
+        req.setAttribute("lastUrl",req.getQueryString()==null? req.getRequestURI():req.getRequestURI()+"?"+req.getQueryString());
         chain.doFilter(req,resp);
     }
 }

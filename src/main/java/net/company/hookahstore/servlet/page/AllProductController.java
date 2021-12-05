@@ -15,7 +15,7 @@ import java.io.IOException;
 public class AllProductController extends AbstractController {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("products", getProductService().listAllProduct(1, Constants.ITEMS_PER_PAGE));
+        req.setAttribute("products", getProductService().listAllProduct(getPage(req), getItemsPerPage(req)));
         int totalCount = getProductService().countAllProduct();
         req.setAttribute("pageCount",getPageCount(totalCount, Constants.ITEMS_PER_PAGE));
         RoutingUtils.forwardToPage("products.jsp", req, resp);

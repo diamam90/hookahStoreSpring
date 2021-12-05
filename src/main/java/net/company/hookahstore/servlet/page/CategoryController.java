@@ -15,7 +15,7 @@ public class CategoryController extends AbstractController {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int totalCount = getProductService().countProductByAside(req);
-        req.setAttribute("products",getProductService().listProductByCategory(req,1, Constants.ITEMS_PER_PAGE));
+        req.setAttribute("products",getProductService().listProductByCategory(req,getPage(req), Constants.ITEMS_PER_PAGE));
         req.setAttribute("pageCount",getPageCount(totalCount,Constants.ITEMS_PER_PAGE));
         RoutingUtils.forwardToPage("products.jsp",req,resp);
     }

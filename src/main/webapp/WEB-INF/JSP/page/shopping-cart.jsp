@@ -28,7 +28,7 @@
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="woocommerce">
-                                                <form>
+                                                <form class="shopping-cart">
                                                     <table class="shop_table cart" cellspacing="0">
                                                         <thead>
                                                         <tr>
@@ -44,7 +44,7 @@
                                                         <c:forEach items="${CURRENT_SHOPPING_CART.products}" var="entry">
                                                         <tr class="cart_item" id="${entry.key}">
                                                             <td class="product-remove">
-                                                                <a type="button" class="remove" title="Remove this item">×</a>
+                                                                <a href class="remove" title="Remove this item">×</a>
                                                             </td>
 
                                                             <td class="product-thumbnail">

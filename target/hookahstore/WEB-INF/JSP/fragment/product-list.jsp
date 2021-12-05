@@ -100,27 +100,7 @@
                                 </div>
 
                                 <nav class="woocommerce-pagination">
-                                    <ul class="page-numbers">
-                                        <li>
-                                            <span class="page-numbers current">1</span>
-                                        </li>
-
-                                        <li>
-                                            <a class="page-numbers" href="#">2</a>
-                                        </li>
-
-                                        <li>
-                                            <span class="page-numbers dots">...</span>
-                                        </li>
-
-                                        <li>
-                                            <a class="page-numbers" href="#">${pageCount}</a>
-                                        </li>
-
-                                        <li>
-                                            <a class="next page-numbers" href="#">?</a>
-                                        </li>
-                                    </ul>
+                                    <jsp:include page="page-numbers.jsp"/>
                                 </nav>
                             </div>
 
@@ -167,9 +147,8 @@
                                                 </div>
                                                 <div class="item-bottom clearfix">
                                                     <div class="clear"></div>
-                                                    <a rel="nofollow" href=""
-                                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart" id="${p.id}">Добавить в корзину
-                                                    </a>
+                                                    <a class="button product_type_simple add_to_cart_button ajax_add_to_cart" id="${p.id}">Добавить в корзину
+                                                    </a >
                                                 </div>
                                             </div>
                                         </div>
@@ -256,27 +235,7 @@
                                 </div>
 
                                 <nav class="woocommerce-pagination">
-                                    <ul class="page-numbers">
-                                        <li>
-                                            <span class="page-numbers current">1</span>
-                                        </li>
-
-                                        <li>
-                                            <a class="page-numbers" href="#">2</a>
-                                        </li>
-
-                                        <li>
-                                            <span class="page-numbers dots">...</span>
-                                        </li>
-
-                                        <li>
-                                            <a class="page-numbers" href="#">28</a>
-                                        </li>
-
-                                        <li>
-                                            <a class="next page-numbers" href="#">?</a>
-                                        </li>
-                                    </ul>
+                                    <jsp:include page="page-numbers.jsp"/>
                                 </nav>
                             </div>
 

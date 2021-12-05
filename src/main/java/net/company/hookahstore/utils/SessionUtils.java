@@ -3,10 +3,8 @@ package net.company.hookahstore.utils;
 import net.company.hookahstore.Constants;
 import net.company.hookahstore.model.CurrentAccount;
 import net.company.hookahstore.model.ShoppingCart;
-import net.company.hookahstore.model.SocialAccount;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
