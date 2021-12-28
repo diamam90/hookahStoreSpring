@@ -1,8 +1,8 @@
-package net.company.hookahstore.servlet.page;
-
+package net.company.hookahstore.controller1.page;
+/*
 import net.company.hookahstore.entity.Account;
 import net.company.hookahstore.model.CurrentAccount;
-import net.company.hookahstore.servlet.AbstractController;
+import net.company.hookahstore.controller.AbstractController;
 import net.company.hookahstore.utils.RoutingUtils;
 
 import javax.servlet.ServletException;
@@ -31,4 +31,4 @@ public class CreateAccountController extends AbstractController {
 
 
     }
-}
+}*/

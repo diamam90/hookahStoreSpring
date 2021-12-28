@@ -1,5 +1,5 @@
 package net.company.hookahstore.service;
-
+/*
 import net.company.hookahstore.service.impl.AccountServiceImpl;
 import net.company.hookahstore.service.impl.OrderServiceImpl;
 import net.company.hookahstore.service.impl.ProductServiceImpl;
@@ -16,7 +16,6 @@ import java.util.Properties;
 public class ServiceManager {
    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceManager.class);
     private final BasicDataSource dataSource;
-    private final ProductService productService;
     private final OrderService orderService;
     private final AccountService accountService;
     private final Properties applicationProperties = new Properties();
@@ -33,7 +32,6 @@ public class ServiceManager {
     private ServiceManager() {
         loadApplicationProperties();
         dataSource = createDataSource();
-        productService = new ProductServiceImpl(dataSource);
         orderService = new OrderServiceImpl(dataSource);
         accountService = new AccountServiceImpl(dataSource);
     }
@@ -69,12 +67,10 @@ public class ServiceManager {
             LOGGER.error("Close dataSource failed " +e.getMessage(),e);
         }
     }
-    public ProductService getProductService() {
-        return productService;
-    }
     public OrderService getOrderService(){
         return orderService;
     }
     public AccountService getAccountService() {return accountService;}
 }
 
+*/

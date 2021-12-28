@@ -1,40 +1,68 @@
 package net.company.hookahstore.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Table(name="product")
+@Entity
 public class Product extends AbstractEntity<Long> {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    @Column
     private String name;
-    private String category;
-    private String producer;
+
+    @ManyToOne
+    @JoinColumn(name="id_category")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="id_producer")
+    private Producer producer;
+
+    @Column(name="image_link_large")
     private String imageLinkLarge;
+    @Column
     private String description;
+    @Column
     private BigDecimal price;
+    @Column
     private int count;
+    @Column(name="image_link_small")
     private String imageLinkSmall;
 
-    public Product(String name, String description, String category, String producer, BigDecimal price, int count, String imageLinkLarge, String imageLinkSmall) {
-        this.name = name;
-        this.imageLinkLarge = imageLinkLarge;
-        this.description = description;
-        this.category = category;
-        this.producer = producer;
-        this.price = price;
-        this.count = count;
-        this.imageLinkSmall = imageLinkSmall;
-    }
+
+
 
     public String getName() {
         return name;
     }
 
-    public String getCategory() {
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Category getCategory() {
         return category;
     }
 
-    public String getProducer() {
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Producer getProducer() {
         return producer;
     }
 
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
 
     public String getDescription() {
         return description;
@@ -52,13 +80,6 @@ public class Product extends AbstractEntity<Long> {
         this.name = name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
 
     public String getImageLinkLarge() {
         return imageLinkLarge;

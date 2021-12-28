@@ -1,5 +1,5 @@
 package net.company.hookahstore.service.impl;
-
+/*
 import net.company.hookahstore.entity.Account;
 import net.company.hookahstore.exception.InternalServerErrorException;
 import net.company.hookahstore.jdbc.JDBCUtils;
@@ -44,4 +44,4 @@ public class AccountServiceImpl implements AccountService {
             throw new InternalServerErrorException("Can't save account: " + currentAccount.getLogin() + ", cause: "+ e);
         }
     }
-}
+}*/

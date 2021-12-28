@@ -1,11 +1,22 @@
 package net.company.hookahstore.entity;
 
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name="order_item")
 public class OrderItem extends AbstractEntity<Long>{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name="id_order")
     private Long orderId;
+    @JoinColumn(name="id_product")
+    @ManyToOne
     private Product product;
+    @Column
     private int count;
 
     public OrderItem(Long orderId,Product product,int count){
@@ -14,6 +25,11 @@ public class OrderItem extends AbstractEntity<Long>{
         this.count=count;
     }
     public OrderItem(){}
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public Long getOrderId() {
         return orderId;

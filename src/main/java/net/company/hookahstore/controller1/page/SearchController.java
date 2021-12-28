@@ -1,5 +1,5 @@
-package net.company.hookahstore.servlet.page;
-
+package net.company.hookahstore.controller1.page;
+/*
 import net.company.hookahstore.entity.Product;
 import net.company.hookahstore.service.ServiceManager;
 import net.company.hookahstore.utils.RoutingUtils;
@@ -20,10 +20,10 @@ public class SearchController extends HttpServlet {
         String query = req.getParameter("query");
         String category = req.getParameter("cat");
         if (category!= null){
-            List<Product> products = serviceManager.getProductService().listProductBySearch(req.getParameter("cat"),req.getParameter("query"));
-            int totalCount = serviceManager.getProductService().countProductBySearch(req.getParameter("cat"),req.getParameter("query"));
-            req.setAttribute("products",products);
-            req.setAttribute("totalCount",totalCount);
+//            List<Product> products = serviceManager.getProductService().listProductBySearch(req.getParameter("cat"),req.getParameter("query"));
+//            int totalCount = serviceManager.getProductService().countProductBySearch(req.getParameter("cat"),req.getParameter("query"));
+//            req.setAttribute("products",products);
+//            req.setAttribute("totalCount",totalCount);
             RoutingUtils.forwardToPage("search.jsp",req,resp);
         } else {
             RoutingUtils.forwardToPage("products.jsp",req,resp);
@@ -31,3 +31,4 @@ public class SearchController extends HttpServlet {
 
     }
 }
+*/

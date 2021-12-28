@@ -1,17 +1,26 @@
 package net.company.hookahstore.entity;
 
-import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="category")
 public class Category extends AbstractEntity<Long> {
-    private String name;
-    private int productCount;
-    private String url;
-    private String ruName;
 
-    @Override
-    public Long getId() {
-        return super.getId();
-    }
+
+    @Id
+    private Long id;
+    @Column
+    private String name;
+    @Column(name="product_count")
+    private int productCount;
+    @Column
+    private String url;
+    @Column(name="ru_name")
+    private String ruName;
 
     public Category() {
     }
@@ -53,6 +62,11 @@ public class Category extends AbstractEntity<Long> {
 
     public String getUrl() {
         return url;
+    }
+
+    @Override
+    public Long getId() {
+        return null;
     }
 
     @Override

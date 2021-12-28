@@ -1,5 +1,5 @@
-package net.company.hookahstore.servlet;
-
+package net.company.hookahstore.controller1;
+/*
 import net.company.hookahstore.Constants;
 import net.company.hookahstore.form.ProductForm;
 import net.company.hookahstore.model.CurrentAccount;
@@ -22,7 +22,6 @@ public class AbstractController extends HttpServlet {
 
     @Override
     public void init()  {
-        productService = ServiceManager.getInstance(getServletContext()).getProductService();
         orderService = ServiceManager.getInstance(getServletContext()).getOrderService();
         accountService = ServiceManager.getInstance(getServletContext()).getAccountService();
     }
@@ -71,3 +70,4 @@ public class AbstractController extends HttpServlet {
         return new CurrentAccount(login,password, name,lastName, email, phone);
     }
 }
+*/

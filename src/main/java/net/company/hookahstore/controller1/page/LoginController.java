@@ -1,9 +1,8 @@
-package net.company.hookahstore.servlet.page;
-
-import net.company.hookahstore.Constants;
+package net.company.hookahstore.controller1.page;
+/*
 import net.company.hookahstore.entity.Account;
 import net.company.hookahstore.model.CurrentAccount;
-import net.company.hookahstore.servlet.AbstractController;
+import net.company.hookahstore.controller.AbstractController;
 import net.company.hookahstore.utils.RoutingUtils;
 import net.company.hookahstore.utils.SessionUtils;
 
@@ -41,3 +40,4 @@ public class LoginController extends AbstractController {
         RoutingUtils.forwardToPage("login.jsp",req,resp);
     }
 }
+*/

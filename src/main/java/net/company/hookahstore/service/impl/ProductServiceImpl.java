@@ -1,38 +1,82 @@
 package net.company.hookahstore.service.impl;
 
+import net.company.hookahstore.configuration.JPAConfig;
 import net.company.hookahstore.entity.Category;
 import net.company.hookahstore.entity.Producer;
 import net.company.hookahstore.entity.Product;
-import net.company.hookahstore.exception.InternalServerErrorException;
-import net.company.hookahstore.jdbc.JDBCUtils;
-import net.company.hookahstore.jdbc.ResultSetHandler;
-import net.company.hookahstore.jdbc.ResultSetHandlerFactory;
+
+
+import net.company.hookahstore.repository.ProductRepository;
 import net.company.hookahstore.service.ProductService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
+
+@Service
 public class ProductServiceImpl implements ProductService {
-    private ResultSetHandler<List<Product>> productsResultSetHandler =
-            ResultSetHandlerFactory.getListResultSetHandler(ResultSetHandlerFactory.PRODUCT_RESULT_SET_HANDLER);
-    private ResultSetHandler<List<Category>> categoriesResultSetHandler =
-            ResultSetHandlerFactory.getListResultSetHandler(ResultSetHandlerFactory.CATEGORY_RESULT_SET_HANDLER);
-    private ResultSetHandler<List<Producer>> producersResultSetHandler =
-            ResultSetHandlerFactory.getListResultSetHandler((ResultSetHandlerFactory.PRODUCER_RESULT_SET_HANDLER));
-    private ResultSetHandler<Integer> countResultSetHandler = ResultSetHandlerFactory.getCountResultSetHandler();
-    private final DataSource dataSource;
+
+    @Autowired
+    private  ProductRepository productRepository;
+
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
-    public ProductServiceImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public ProductServiceImpl(){}
+
+     @Override
+    public List<Product> listAllProduct(int page, int limit) {
+        return productRepository.findAllProduct();
     }
 
+    @Override
+    public int countAllProduct() {
+        return 0;
+    }
+
+    @Override
+    public List<Product> listProductByCategory(HttpServletRequest req, int page, int limit) {
+        return null;
+    }
+
+    @Override
+    public int countProductByAside(HttpServletRequest req) {
+        return 0;
+    }
+
+    @Override
+    public List<Category> listAllCategories() {
+        return null;
+    }
+
+    @Override
+    public List<Producer> listAllProducers() {
+        return null;
+    }
+
+    @Override
+    public List<Product> listProductBySearch(String category, String searchQuery) {
+        return null;
+    }
+
+    @Override
+    public int countProductBySearch(String category, String searchQuery) {
+        return 0;
+    }
+
+    @Override
+    public Map<Category, List<Producer>> mapProducerByCategory() {
+        return null;
+    }
+    /*
     @Override
     public List<Product> listAllProduct(int page, int limit) {
         try (Connection c = dataSource.getConnection()) {
@@ -157,5 +201,5 @@ public class ProductServiceImpl implements ProductService {
         } catch (SQLException e) {
             throw new InternalServerErrorException("Can't execute query:" + e.getMessage(), e);
         }
-    }
+    }*/
 }

@@ -1,5 +1,5 @@
 package net.company.hookahstore.filter;
-
+/*
 import net.company.hookahstore.model.ShoppingCart;
 import net.company.hookahstore.service.OrderService;
 import net.company.hookahstore.service.ServiceManager;
@@ -42,3 +42,4 @@ public class AutoRestoreShoppingCartFilter extends AbstractFilter {
         chain.doFilter(req,resp);
     }
 }
+*/

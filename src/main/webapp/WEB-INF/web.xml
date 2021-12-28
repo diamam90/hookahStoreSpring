@@ -6,32 +6,6 @@
 
 
 
-    <filter-mapping>
-        <filter-name>ErrorHandlerFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AutoRestoreShoppingCartFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>SetCurrentRequestUrlFilter</filter-name>
-        <url-pattern>/products*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>SetCurrentRequestUrlFilter</filter-name>
-        <url-pattern>/shopping-cart*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>SetCurrentRequestUrlFilter</filter-name>
-        <url-pattern>/categories*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>SetCurrentRequestUrlFilter</filter-name>
-        <url-pattern>/search*</url-pattern>
-    </filter-mapping>
-
-
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
@@ -39,3 +13,30 @@
 
 
 </web-app>
+<!--
+<filter-mapping>
+<filter-name>ErrorHandlerFilter</filter-name>
+<url-pattern>/*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>AutoRestoreShoppingCartFilter</filter-name>
+<url-pattern>/*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>SetCurrentRequestUrlFilter</filter-name>
+<url-pattern>/products*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>SetCurrentRequestUrlFilter</filter-name>
+<url-pattern>/shopping-cart*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>SetCurrentRequestUrlFilter</filter-name>
+<url-pattern>/categories*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>SetCurrentRequestUrlFilter</filter-name>
+<url-pattern>/search*</url-pattern>
+</filter-mapping>
+
+-->

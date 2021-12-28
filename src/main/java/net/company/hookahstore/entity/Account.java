@@ -1,11 +1,25 @@
 package net.company.hookahstore.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="account")
 public class Account extends AbstractEntity<Long> {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private Long id;
+    @Column
     private String login;
+    @Column
     private String password;
+    @Column
     private String name;
+    @Column(name = "last_name")
     private String lastname;
+    @Column
     private String email;
+    @Column
     private String phone;
 
 
@@ -63,6 +77,11 @@ public class Account extends AbstractEntity<Long> {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public Long getId() {
+        return null;
     }
 
     @Override

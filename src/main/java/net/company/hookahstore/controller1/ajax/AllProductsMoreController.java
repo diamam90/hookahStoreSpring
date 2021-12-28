@@ -1,7 +1,7 @@
-package net.company.hookahstore.servlet.ajax;
-
+package net.company.hookahstore.controller1.ajax;
+/*
 import net.company.hookahstore.Constants;
-import net.company.hookahstore.servlet.AbstractController;
+import net.company.hookahstore.controller.AbstractController;
 import net.company.hookahstore.utils.RoutingUtils;
 
 import javax.servlet.ServletException;
@@ -19,3 +19,4 @@ public class AllProductsMoreController  extends AbstractController {
         RoutingUtils.forwardToFragment("product-list.jsp",req,resp);
     }
 }
+*/

@@ -1,5 +1,5 @@
 package net.company.hookahstore.listener;
-
+/*
 import net.company.hookahstore.service.ServiceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +16,9 @@ public class ApplicationListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try {
             serviceManager = ServiceManager.getInstance(sce.getServletContext());
-            sce.getServletContext().setAttribute("CATEGORY_LIST", serviceManager.getProductService().listAllCategories());
-            sce.getServletContext().setAttribute("PRODUCER_LIST", serviceManager.getProductService().listAllProducers());
-            sce.getServletContext().setAttribute("PRODUCER_BY_CATEGORY_MAP", serviceManager.getProductService().mapProducerByCategory());
+//            sce.getServletContext().setAttribute("CATEGORY_LIST", serviceManager.getProductService().listAllCategories());
+//            sce.getServletContext().setAttribute("PRODUCER_LIST", serviceManager.getProductService().listAllProducers());
+//            sce.getServletContext().setAttribute("PRODUCER_BY_CATEGORY_MAP", serviceManager.getProductService().mapProducerByCategory());
         } catch (RuntimeException e){
             LOGGER.error("Web application 'hookahstore' init failed",e.getMessage());
             throw e;
@@ -32,3 +32,4 @@ public class ApplicationListener implements ServletContextListener {
         LOGGER.info("Web application 'hookahstore' destroyed");
     }
 }
+*/

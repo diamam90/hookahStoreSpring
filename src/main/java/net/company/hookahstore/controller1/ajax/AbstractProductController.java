@@ -1,8 +1,8 @@
-package net.company.hookahstore.servlet.ajax;
-
+package net.company.hookahstore.controller1.ajax;
+/*
 import net.company.hookahstore.form.ProductForm;
 import net.company.hookahstore.model.ShoppingCart;
-import net.company.hookahstore.servlet.AbstractController;
+import net.company.hookahstore.controller.AbstractController;
 import net.company.hookahstore.utils.RoutingUtils;
 import net.company.hookahstore.utils.SessionUtils;
 import org.json.JSONObject;
@@ -48,3 +48,4 @@ public abstract class AbstractProductController extends AbstractController {
         RoutingUtils.sendJSON(cardStatistics,req,resp);
     }
 }
+*/

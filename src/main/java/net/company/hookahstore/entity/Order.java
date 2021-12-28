@@ -1,13 +1,29 @@
 package net.company.hookahstore.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
+@Entity
+@Table(name="order")
 public class Order extends AbstractEntity<Long>{
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private Long id;
+    @Column(name="id_account")
     private Long idAccount;
+    @Column
     private Timestamp created;
+    @Column
+    @OneToMany
     private List<OrderItem> itemList;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
 
     public Order(){}
     public Order(Long idAccount,Timestamp created, List<OrderItem> itemList){

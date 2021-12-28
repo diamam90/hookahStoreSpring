@@ -1,6 +1,6 @@
-package net.company.hookahstore.servlet.page;
-
-import net.company.hookahstore.servlet.AbstractController;
+package net.company.hookahstore.controller1.page;
+/*
+import net.company.hookahstore.controller.AbstractController;
 import net.company.hookahstore.utils.RoutingUtils;
 import net.company.hookahstore.utils.SessionUtils;
 
@@ -22,3 +22,4 @@ public class ShowShoppingCartController extends AbstractController {
 
     }
 }
+*/

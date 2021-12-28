@@ -1,5 +1,5 @@
 package net.company.hookahstore.filter;
-
+/*
 import net.company.hookahstore.exception.AbstractApplicationException;
 import net.company.hookahstore.exception.InternalServerErrorException;
 import net.company.hookahstore.exception.ResourceNotFoundException;
@@ -88,3 +88,4 @@ public class ErrorHandlerFilter extends AbstractFilter{
         }
     }
 }
+*/

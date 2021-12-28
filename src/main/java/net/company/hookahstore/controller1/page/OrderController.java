@@ -1,8 +1,8 @@
-package net.company.hookahstore.servlet.page;
-
+package net.company.hookahstore.controller1.page;
+/*
 import net.company.hookahstore.entity.Order;
 import net.company.hookahstore.model.ShoppingCart;
-import net.company.hookahstore.servlet.AbstractController;
+import net.company.hookahstore.controller.AbstractController;
 import net.company.hookahstore.utils.RoutingUtils;
 import net.company.hookahstore.utils.SessionUtils;
 
@@ -31,3 +31,4 @@ public class OrderController extends AbstractController {
         RoutingUtils.redirect("/order?id="+id,req,resp);
     }
 }
+*/
