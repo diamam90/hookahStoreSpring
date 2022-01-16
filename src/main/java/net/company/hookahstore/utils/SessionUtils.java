@@ -29,7 +29,7 @@ public class SessionUtils {
     public static Cookie findShoppingCartCookie(HttpServletRequest req){
        return WebUtils.findCookie(req,Constants.Cookie.SHOPPING_CART.getName());
     }
-    public static void updateCurrentShoppingCartCookie(String cookieValue, HttpServletRequest req, HttpServletResponse resp){
+    public static void updateCurrentShoppingCartCookie(String cookieValue, HttpServletResponse resp){
         WebUtils.setCookie(Constants.Cookie.SHOPPING_CART.getName(),cookieValue,Constants.Cookie.SHOPPING_CART.getTtl(),resp);
     }
     public static boolean isCurrentAccountCreated (HttpServletRequest req){
@@ -39,7 +39,7 @@ public class SessionUtils {
         req.getSession().setAttribute(Constants.CURRENT_ACCOUNT,currentAccount);
     }
     public static CurrentAccount getCurrentAccount(HttpServletRequest req){
-        return (CurrentAccount )req.getSession().getAttribute(Constants.CURRENT_ACCOUNT);
+        return (CurrentAccount)req.getSession().getAttribute(Constants.CURRENT_ACCOUNT);
     }
     private SessionUtils(){}
 }

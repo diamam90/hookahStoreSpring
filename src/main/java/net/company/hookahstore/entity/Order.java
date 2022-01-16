@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="order")
-public class Order extends AbstractEntity<Long>{
+public class Order{
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -20,9 +20,12 @@ public class Order extends AbstractEntity<Long>{
     @OneToMany
     private List<OrderItem> itemList;
 
-    @Override
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Order(){}
@@ -59,11 +62,14 @@ public class Order extends AbstractEntity<Long>{
     @Override
     public String toString() {
         return "Order{" +
-                "idAccount=" + idAccount +
+                "id=" + id +
+                ", idAccount=" + idAccount +
                 ", created=" + created +
                 ", itemList=" + itemList +
                 '}';
     }
+
+
     public BigDecimal getTotalCost(){
         BigDecimal total = BigDecimal.ZERO;
         if (itemList!=null){

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="producer")
-public class Producer extends AbstractEntity<Long> {
+public class Producer{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -23,7 +23,7 @@ public class Producer extends AbstractEntity<Long> {
     }
 
     public Long getId() {
-        return getId();
+        return id;
     }
 
     public void setName(String name) {
@@ -42,11 +42,7 @@ public class Producer extends AbstractEntity<Long> {
         return productCount;
     }
 
-    @Override
-    public String toString() {
-        return "Producer{" +
-                "name='" + name + '\'' +
-                ", productCount=" + productCount +
-                '}';
+    public void setId(Long id) {
+        this.id = id;
     }
 }

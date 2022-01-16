@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="account")
-public class Account extends AbstractEntity<Long> {
+public class Account{
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -79,7 +79,7 @@ public class Account extends AbstractEntity<Long> {
         this.password = password;
     }
 
-    @Override
+
     public Long getId() {
         return null;
     }
@@ -87,12 +87,13 @@ public class Account extends AbstractEntity<Long> {
     @Override
     public String toString() {
         return "Account{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

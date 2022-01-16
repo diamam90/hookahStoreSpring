@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name="order_item")
-public class OrderItem extends AbstractEntity<Long>{
+public class OrderItem{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,11 +25,6 @@ public class OrderItem extends AbstractEntity<Long>{
         this.count=count;
     }
     public OrderItem(){}
-
-    @Override
-    public Long getId() {
-        return id;
-    }
 
     public Long getOrderId() {
         return orderId;

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 @Table(name="product")
 @Entity
-public class Product extends AbstractEntity<Long> {
+public class Product{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -39,10 +39,6 @@ public class Product extends AbstractEntity<Long> {
         return name;
     }
 
-    @Override
-    public Long getId() {
-        return id;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -110,5 +106,24 @@ public class Product extends AbstractEntity<Long> {
     }
 
     public Product() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                ", producer=" + producer +
+                ", imageLinkLarge='" + imageLinkLarge + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", count=" + count +
+                ", imageLinkSmall='" + imageLinkSmall + '\'' +
+                '}';
     }
 }

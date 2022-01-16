@@ -1,0 +1,12 @@
+
+HWeb:TableWithoutCaptionCheck " Add a description to this table.(†¯°à
+D	Web:S1827 "/Remove this deprecated "cellspacing" attribute.(†¯°à
+g Web:TableHeaderHasIdOrScopeCheck#";Add either an 'id' or a 'scope' attribute to this <th> tag.(ñç½½
+l Web:TableHeaderHasIdOrScopeCheck$";Add either an 'id' or a 'scope' attribute to this <th> tag.(îºË¥ûÿÿÿÿ
+g Web:TableHeaderHasIdOrScopeCheck%";Add either an 'id' or a 'scope' attribute to this <th> tag.(ê«¹Ñ
+l Web:TableHeaderHasIdOrScopeCheck&";Add either an 'id' or a 'scope' attribute to this <th> tag.(†¢ÍÎøÿÿÿÿ
+g Web:TableHeaderHasIdOrScopeCheck'";Add either an 'id' or a 'scope' attribute to this <th> tag.(ú³Ò‹
+f Web:TableHeaderHasIdOrScopeCheck(";Add either an 'id' or a 'scope' attribute to this <th> tag.( ·–"
+MWeb:TableWithoutCaptionCheckZ" Add a description to this table.(°·ºÀýÿÿÿÿ
+I	Web:S1827Z"/Remove this deprecated "cellspacing" attribute.(°·ºÀýÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck]";Add either an 'id' or a 'scope' attribute to this <th> tag.(ôÉµöúÿÿÿÿ

@@ -5,5 +5,5 @@ import net.company.hookahstore.model.CurrentAccount;
 
 public interface AccountService {
     Account getAccount(String login, String password);
-    void saveAccount(CurrentAccount currentAccount);
+    void saveAccount(Account account);
 }

@@ -30,7 +30,7 @@
                             <div class="entry-content">
                                 <div class="woocommerce">
                                     <div class="col2-set row" id="customer_login">
-                                        <form method="post" class="register" action="/create-account">
+                                        <form method="post" class="register" action="/account/create-account">
                                             <h2>Регистрация</h2>
                                             <div class="col-lg-6">
                                                 <p class="form-row form-row-wide">

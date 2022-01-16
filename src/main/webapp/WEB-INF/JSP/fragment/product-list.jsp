@@ -68,7 +68,7 @@
                                         <div class="products-content">
                                             <div class="item-content">
                                                 <h4 class="category">
-                                                    <p>Категория: ${p.category}</p>
+                                                    <p>Категория: ${p.category.ruName}</p>
                                                 </h4>
                                                 <h4 class="name">${p.name}</h4>
 

@@ -3,6 +3,9 @@ package net.company.hookahstore.service;
 import net.company.hookahstore.entity.Category;
 import net.company.hookahstore.entity.Producer;
 import net.company.hookahstore.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -11,24 +14,18 @@ import java.util.List;
 import java.util.Map;
 
 
-public interface ProductService {
+public interface ProductService  {
 
     Product getProductById(Long id);
 
-
-    int countAllProduct();
-
-    List<Product> listProductByCategory(HttpServletRequest req, int page, int limit);
-
-    int countProductByAside(HttpServletRequest req);
+    Page<Product> findAll(Pageable pageable);
 
     List<Category> listAllCategories();
 
-    List<Producer> listAllProducers();
+    Page<Product> listProductBySearch(HttpServletRequest req,Pageable pageable);
 
-    List<Product> listProductBySearch(String category,String searchQuery);
+    Page<Product> listProductByCategoryAndProducer(HttpServletRequest req, Pageable pageable);
 
-    int countProductBySearch(String category,String searchQuery);
+    Map<Category,List<Producer>> getProducersByCategoryMap(List<Category> categories);
 
-    Map<Category, List<Producer>> mapProducerByCategory();
 }

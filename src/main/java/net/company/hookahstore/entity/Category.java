@@ -1,17 +1,15 @@
 package net.company.hookahstore.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="category")
-public class Category extends AbstractEntity<Long> {
+public class Category {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
     private String name;
@@ -23,6 +21,10 @@ public class Category extends AbstractEntity<Long> {
     private String ruName;
 
     public Category() {
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRuName() {
@@ -52,6 +54,10 @@ public class Category extends AbstractEntity<Long> {
         this.ruName = ruName;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -64,18 +70,11 @@ public class Category extends AbstractEntity<Long> {
         return url;
     }
 
-    @Override
-    public Long getId() {
-        return null;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "name='" + name + '\'' +
-                ", productCount=" + productCount +
-                ", url='" + url + '\'' +
-                ", ruName='" + ruName + '\'' +
-                '}';
+    public Category(Long id, String name, int productCount, String url, String ruName) {
+        this.id = id;
+        this.name = name;
+        this.productCount = productCount;
+        this.url = url;
+        this.ruName = ruName;
     }
 }

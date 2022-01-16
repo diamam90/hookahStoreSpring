@@ -1,6 +1,7 @@
 package net.company.hookahstore.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import net.company.hookahstore.Constants;
 import net.company.hookahstore.entity.Product;
 import net.company.hookahstore.exception.ValidationException;
@@ -41,6 +42,17 @@ public class ShoppingCart implements Serializable {
         }
         refreshStatistic();
     }
+    public void updateProduct(Long idProduct, int count){
+        ShoppingCartItem item = products.get(idProduct);
+        if (item!=null){
+            if (count == 0){
+                products.remove(idProduct);
+            } else {
+                item.setCount(count);
+            }
+        }
+        refreshStatistic();
+    }
     public void validateShoppingCart(long idProduct) {
         if (!products.containsKey(idProduct) && products.size() == Constants.MAX_PRODUCTS_PER_SHOPPING_CART) {
             throw new ValidationException("Limit products in your shopping cart: " + products.size());
@@ -61,7 +73,7 @@ public class ShoppingCart implements Serializable {
             item.refreshSubTotal();
          }
     }
-
+    @JsonIgnore
     public Collection<ShoppingCartItem> getItems(){
         return products.values();
     }

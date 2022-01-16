@@ -1,115 +1,98 @@
 package net.company.hookahstore.service.impl;
 
-import net.company.hookahstore.configuration.JPAConfig;
 import net.company.hookahstore.entity.Category;
 import net.company.hookahstore.entity.Producer;
 import net.company.hookahstore.entity.Product;
 
 
+import net.company.hookahstore.exception.InternalServerErrorException;
+import net.company.hookahstore.repository.CategoryRepository;
+import net.company.hookahstore.repository.ProducerRepository;
 import net.company.hookahstore.repository.ProductRepository;
 import net.company.hookahstore.service.ProductService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private  ProductRepository productRepository;
+    private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private ProducerRepository producerRepository;
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
-    public ProductServiceImpl(){}
+    public ProductServiceImpl() {
+    }
 
     @Override
-    public Product getProductById(Long id){
+    public Product getProductById(Long id) {
         return productRepository.getProductById(id);
     }
 
     @Override
-    public int countAllProduct() {
-        return 0;
+    public Page<Product> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
-    @Override
-    public List<Product> listProductByCategory(HttpServletRequest req, int page, int limit) {
-        return null;
-    }
-
-    @Override
-    public int countProductByAside(HttpServletRequest req) {
-        return 0;
-    }
 
     @Override
     public List<Category> listAllCategories() {
-        return null;
+        return categoryRepository.findAll();
+    }
+
+
+    @Override
+    public Page<Product> listProductByCategoryAndProducer(HttpServletRequest req, Pageable pageable) {
+        if (req.getParameter("cat") == null) {
+            throw new InternalServerErrorException("/categories without params");
+        }
+        Long categoryId = Long.parseLong(req.getParameter("cat"));
+        if (req.getParameter("prod") == null) {
+
+            return productRepository.findAllByCategory_Id(categoryId, pageable);
+        }
+        Long producerId = Long.parseLong(req.getParameter("prod"));
+        return productRepository.findAllByCategory_IdAndProducer_Id(categoryId, producerId, pageable);
     }
 
     @Override
-    public List<Producer> listAllProducers() {
-        return null;
-    }
-
-    @Override
-    public List<Product> listProductBySearch(String category, String searchQuery) {
-        return null;
-    }
-
-    @Override
-    public int countProductBySearch(String category, String searchQuery) {
-        return 0;
-    }
-
-    @Override
-    public Map<Category, List<Producer>> mapProducerByCategory() {
-        return null;
-    }
-    /*
-    @Override
-    public List<Product> listAllProduct(int page, int limit) {
-        try (Connection c = dataSource.getConnection()) {
-            int offset = (page - 1) * limit;
-            return JDBCUtils.select(c, "select p.*, c.ru_name as category, pr.name as producer from product p,category c,producer pr " +
-                    "where p.id_category = c.id and p.id_producer = pr.id limit ? offset ?", productsResultSetHandler, limit, offset);
-        } catch (SQLException e) {
-            throw new InternalServerErrorException("Can't execute query: " + e.getMessage(), e);
+    public Page<Product> listProductBySearch(HttpServletRequest req, Pageable pageable) {
+        if (!req.getParameterNames().hasMoreElements()) {
+            throw new InternalServerErrorException("search request without params");
+        }
+        String param = "%" + req.getParameter("query") + "%";
+        if (req.getParameter("cat").equals("all")) {
+            return productRepository.findAllProductsBySearchQuery(param, param, pageable);
+        } else {
+            return productRepository.findAllProductsBySearchQueryWithChosenCategory(Long.parseLong(req.getParameter("cat")), param, param, pageable);
         }
     }
 
     @Override
-    public int countAllProduct() {
-        try (Connection c = dataSource.getConnection()) {
-            return JDBCUtils.select(c, "select count(*) from product", countResultSetHandler);
-        } catch (SQLException e) {
-            throw new InternalServerErrorException("Can't execute query: " + e.getMessage(), e);
+    public Map<Category, List<Producer>> getProducersByCategoryMap(List<Category> categories) {
+        Map<Category, List<Producer>> result = new HashMap<>();
+        for (Category category : categories) {
+            List<Producer> producerList = producerRepository.getProducersByCategory(category.getId());
+            result.put(category, producerList);
         }
+        return result;
     }
-
-
-    @Override
-    public List<Product> listProductByCategory(HttpServletRequest req, int page, int limit) {
-        int offset = (page - 1) * limit;
-        try (Connection c = dataSource.getConnection()) {
-            StringBuilder query=buildQuery(req,"select p.*, c.ru_name as category, pr.name as producer from product p, category c, producer pr where " +
-                    "p.id_category=c.id and p.id_producer=pr.id");
-            query.append(" limit ? offset ?");
-            LOGGER.debug("execute category ={}, producer={}", req.getParameterValues("cat"),req.getParameterValues("prod"));
-            return JDBCUtils.select(c,query.toString(),productsResultSetHandler,limit,offset);
-        } catch (SQLException e) {
-            throw new InternalServerErrorException("Can't execute query: " + e.getMessage(), e);
-        }
-    }
+/*
 
     public StringBuilder buildQuery(HttpServletRequest req,String sql){
         StringBuilder query = new StringBuilder(sql);
@@ -139,24 +122,6 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    @Override
-    public List<Category> listAllCategories() {
-        try (Connection c = dataSource.getConnection()) {
-            List<Category> categories = JDBCUtils.select(c, "select * from category", categoriesResultSetHandler);
-            return categories;
-        } catch (SQLException e) {
-            throw new InternalServerErrorException("Can't execute query:" + e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public List<Producer> listAllProducers() {
-        try (Connection c = dataSource.getConnection()) {
-            return JDBCUtils.select(c, "select * from producer", producersResultSetHandler);
-        } catch (SQLException e) {
-            throw new InternalServerErrorException("Can't execute query:" + e.getMessage(), e);
-        }
-    }
 
     @Override
     public List<Product> listProductBySearch(String category,String searchQuery) {
@@ -193,12 +158,5 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    public Map<Category, List<Producer>> mapProducerByCategory() {
-        try (Connection c = dataSource.getConnection()) {
-            return JDBCUtils.select(c, "select distinct c.*, pr.* from category c, producer pr, product p where p.id_category=c.id and p.id_producer=pr.id",
-                    ResultSetHandlerFactory.mapResultSetHandler);
-        } catch (SQLException e) {
-            throw new InternalServerErrorException("Can't execute query:" + e.getMessage(), e);
-        }
-    }*/
+   */
 }

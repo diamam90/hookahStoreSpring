@@ -155,7 +155,7 @@
 
                                     <div class="col-reg login-customer">
 
-                                        <a href="/create-account" title="Register"
+                                        <a href="/account/registration" title="Register"
                                            class="btn-reg-popup">Create an account</a>
                                     </div>
 

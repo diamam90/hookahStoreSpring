@@ -58,6 +58,14 @@
         $('#postRequestForm').submit();
     };
 
+    var pagination = function(){
+        var pageNumber = parseInt($(this).text())-1;
+        //удаление параметра страницы: если он первый то ?page=,а если последующий то &page=
+        var query=location.search.replace(/.page=\d+/,"");
+        //создание урла для редиректа
+        var url = (query=="" | query==null)?location.pathname+'?page='+pageNumber:location.pathname+query+'&page='+pageNumber;
+        location.href=url;
+    }
     var showPopup = function () {
         var idProduct = $(this).parent().parent().attr('id');
         var product = $(this).parent().parent();
@@ -104,6 +112,7 @@
                 count: count
             },
             success: function (data) {
+                console.log(data);
                 if (data.totalCount == 0) {
                     window.location.href = '/products';
                 } else {
@@ -144,13 +153,13 @@
                 count: count
             },
             success: function (data) {
-                if (data.count === 0) {
+                if (parseInt(count) === 0) {
                     var tr = $('[name="update_cart"][data-id-product="product' + id + '"]').parent().parent();
                     tr.remove();
                     product.remove();
                 } else {
-                    product.find('.quantity input').val(parseInt(data.count));
-                    product.find('.product-subtotal span').text(data.subTotal + " ₽");
+                    product.find('.product-subtotal span').text(data.subTotalMap[id] + " ₽");
+                    product.find('.quantity input').val(data.countMap[id]);
                 }
                 $('.order-total .woocommerce-Price-amount.amount').text(data.totalCost + " ₽");
                 $('.cart-contents .minicart-number').text(data.totalCount);
@@ -186,7 +195,6 @@
     var addProductToCartFromPage = function () {
         var idProduct = $(this).attr('id');
         var count = 1;
-        console.log("id: " + idProduct + "count: " + count);
         $.ajax({
             url: "/ajax/json/product/add",
             method: 'post',
@@ -195,6 +203,7 @@
                 count: count
             },
             success: function (data) {
+                console.log(data);
                 $('.cart-contents .minicart-number').text(data.totalCount);
                 $('.cart-contents .amount').text(data.totalCost);
             },
@@ -222,6 +231,7 @@
                 count: count
             },
             success: function (data) {
+                console.log(data.totalCount+" - " + data.totalCost);
                 $('.cart-contents .minicart-number').text(data.totalCount);
                 $('.cart-contents .amount').text(data.totalCost);
                 $('#addProductPopup').modal('hide');
@@ -245,7 +255,7 @@
         $('.post-request').click(function(){
             postRequest($(this).attr('data-url'));
         });
-        //$('a.page-numbers').click(loadProductForPage);
+        $('a.page-numbers').click(pagination);
         $('a[href="#cpanel-form"]').on('click', function (e) {
             e.preventDefault();
             var parent = $('#cpanel-form'),

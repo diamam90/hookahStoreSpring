@@ -10,6 +10,7 @@ import org.springframework.core.io.Resource;
 @Configuration
 @ComponentScan({"net.company.hookahstore.service.impl",
         "net.company.hookahstore.controller",
+        "net.company.hookahstore.listener"
         })
 public class ServiceConfig {
 
