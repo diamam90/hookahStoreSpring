@@ -25,7 +25,7 @@ public class JPAConfig {
     @Autowired
     private Environment environment;
 
-    @Bean(/*destroyMethod = "close"*/)
+    @Bean
     public DataSource dataSource(){
        BasicDataSource dataSource = new BasicDataSource();
        dataSource.setDriverClassName(environment.getRequiredProperty("db.driver"));

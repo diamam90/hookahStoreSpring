@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -41,47 +42,58 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     public OrderItemRepository orderItemRepository;
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(OrderServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Override
     public void addProductToShoppingCart(ProductForm productForm, ShoppingCart shoppingCart) {
         Product product = productService.getProductById(productForm.getIdProduct());
-        shoppingCart.addProduct(product,productForm.getCount());
+        shoppingCart.addProduct(product, productForm.getCount());
     }
 
     @Override
     public void removeProductFromShoppingCart(ProductForm productForm, ShoppingCart shoppingCart) {
-        shoppingCart.removeProduct(productForm.getIdProduct(),productForm.getCount());
+        shoppingCart.removeProduct(productForm.getIdProduct(), productForm.getCount());
     }
 
     @Override
     public void updateShoppingCart(ProductForm productForm, ShoppingCart shoppingCart) {
-        shoppingCart.updateProduct(productForm.getIdProduct(),productForm.getCount());
+        shoppingCart.updateProduct(productForm.getIdProduct(), productForm.getCount());
     }
+
+
+    public Long saveOI(OrderItem oi){
+        OrderItem savedOrderItem = orderItemRepository.save(oi);
+        return savedOrderItem.getId();
+    }
+
     @Transactional
     @Override
     public long makeOrder(ShoppingCart shoppingCart, CurrentAccount currentAccount) {
-        List<ShoppingCartItem> items = (List<ShoppingCartItem>) shoppingCart.getItems();
-        List<OrderItem> orderItemList = new ArrayList<>();
-        for (ShoppingCartItem item: items){
-            OrderItem oi=new OrderItem();
-            oi.setProduct(item.getProduct());
-            oi.setCount(item.getCount());
-            orderItemRepository.save(oi);
-            orderItemList.add(oi);
-        }
         Order order = new Order();
-        order.setItemList(orderItemList);
         order.setIdAccount(currentAccount.getId());
         order.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-        orderRepository.save(order);
-        return order.getId();
+
+        Order returnOrder = orderRepository.save(order);
+        LOGGER.info("Order {} has been saved",returnOrder);
+        Collection<ShoppingCartItem> items = shoppingCart.getItems();
+        List<OrderItem> orderItemList = new ArrayList<>();
+        for (ShoppingCartItem item : items) {
+            OrderItem oi = new OrderItem();
+            oi.setOrderId(returnOrder.getId());
+            oi.setProduct(item.getProduct());
+            oi.setCount(item.getCount());
+            OrderItem returnOrderItem = orderItemRepository.save(oi);
+            LOGGER.info("OrderItem {} has been saved",returnOrderItem);
+            orderItemList.add(returnOrderItem);
+        }
+        returnOrder.setItemList(orderItemList);
+        return returnOrder.getId();
     }
 
     @Override
     public Order findOrderById(long id, CurrentAccount currentAccount) {
         Order order = orderRepository.findOrderById(id);
-        if (order.getIdAccount()==currentAccount.getId()){
+        if (order.getIdAccount() == currentAccount.getId()) {
             return order;
         } else {
             throw new AccessDeniedException("Access denied account: " + currentAccount + "for order id : " + id);
@@ -90,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<Order> listMyOrders(CurrentAccount currentAccount, Pageable pageable) {
-        return orderRepository.findAllByIdAccount(currentAccount.getId(),pageable);
+        return orderRepository.findAllByIdAccount(currentAccount.getId(), pageable);
     }
 
     @Override
@@ -98,14 +110,7 @@ public class OrderServiceImpl implements OrderService {
         return 0;
     }
 
-//    private List<Object[]> toOrderItemParameterList(long idOrder, Collection<ShoppingCartItem> items){
-//        List<Object[]> parameterList = new ArrayList<>();
-//        for (ShoppingCartItem item: items){
-//            parameterList.add(new Object[]{idOrder,item.getProduct().getId(),item.getCount()});
-//        }
-//        return parameterList;
-//    }
-    @Override
+     @Override
     public String serializeShoppingCart(ShoppingCart shoppingCart) {
         StringBuilder cookieStr = new StringBuilder();
         for (ShoppingCartItem item : shoppingCart.getItems()) {

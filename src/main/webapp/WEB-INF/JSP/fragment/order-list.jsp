@@ -44,7 +44,7 @@
                                             <c:forEach items="${orderList}" var="item">
                                             <tr class="order">
                                                 <td class="order-number" data-title="Order">
-                                                    <a href="/order?id=${item.id}">#${item.id}</a>
+                                                    <a href="/order/${item.id}">#${item.id}</a>
                                                 </td>
                                                 <td class="order-date" data-title="Date">
                                                     <time>${item.created}</time>

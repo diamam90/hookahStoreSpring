@@ -30,7 +30,7 @@
                             <div class="entry-content">
                                 <div class="woocommerce">
                                     <div class="col2-set row" id="customer_login">
-                                        <form method="post" class="register" action="/login">
+                                        <form method="post" class="login" action="/account/login">
                                             <h2>Вход в личный кабинет</h2>
                                             <div class="col-lg-6">
                                                 <p class="form-row form-row-wide">
@@ -46,7 +46,7 @@
                                                            id="regPassword"/>
                                                 </p>
                                                 <p class="form-row">
-                                                    <input type="submit" class="button" name="login" value="login"/>
+                                                    <input type="submit" class="button" value="login"/>
                                                 </p>
 
                                             </div>

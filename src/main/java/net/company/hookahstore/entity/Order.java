@@ -6,18 +6,19 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name="order")
+@Table(name="hs_order")
 public class Order{
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="order_generator")
+    @SequenceGenerator(name="order_generator",sequenceName = "order_seq",allocationSize = 1)
     private Long id;
     @Column(name="id_account")
     private Long idAccount;
     @Column
     private Timestamp created;
-    @Column
-    @OneToMany
+    @JoinColumn(name="id_order")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<OrderItem> itemList;
 
     public Long getId() {
@@ -65,7 +66,6 @@ public class Order{
                 "id=" + id +
                 ", idAccount=" + idAccount +
                 ", created=" + created +
-                ", itemList=" + itemList +
                 '}';
     }
 

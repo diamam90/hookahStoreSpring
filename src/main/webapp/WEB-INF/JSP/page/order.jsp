@@ -17,7 +17,7 @@
                     <span class="go-page"></span>
                 </li>
                 <li class="active">
-                    <span> #</span>
+                    <span>#${order.id}</span>
                 </li>
             </ul>
         </div>
@@ -49,7 +49,7 @@
 
                                                             <td class="product-thumbnail">
                                                                 <a href="">
-                                                                    <img width="180" height="180" src="${item.product.imageLinkSmall}" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""/>
+                                                                    <img width="180" height="180" src="/${item.product.imageLinkSmall}" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""/>
                                                                 </a>
                                                             </td>
 

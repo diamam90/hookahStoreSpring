@@ -1,6 +1,7 @@
 package net.company.hookahstore.service.impl;
 
 import net.company.hookahstore.entity.Account;
+import net.company.hookahstore.model.CurrentAccount;
 import net.company.hookahstore.repository.AccountRepository;
 import net.company.hookahstore.service.AccountService;
 import org.slf4j.Logger;
@@ -17,8 +18,17 @@ public class AccountServiceImpl implements AccountService {
     AccountRepository accountRepository;
 
     @Override
-    public Account getAccount(String login, String password) {
-      return accountRepository.findByLoginAndPassword(login,password);
+    public CurrentAccount getCurrentAccount(String login, String password) {
+        Account account = accountRepository.findByLoginAndPassword(login,password);
+        if (account==null){
+            return null;
+        }
+        CurrentAccount current = new CurrentAccount();
+        current.setId(account.getId());
+        current.setEmail(account.getEmail());
+        current.setName(account.getName());
+        current.setPhone(account.getPhone());
+      return current;
     }
 
     @Override

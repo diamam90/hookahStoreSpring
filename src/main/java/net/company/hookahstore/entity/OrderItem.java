@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 public class OrderItem{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="order_item_generator")
+    @SequenceGenerator(name="order_item_generator",sequenceName = "order_item_seq",allocationSize = 1)
     private Long id;
     @Column(name="id_order")
     private Long orderId;
@@ -19,7 +20,16 @@ public class OrderItem{
     @Column
     private int count;
 
-    public OrderItem(Long orderId,Product product,int count){
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public OrderItem(Long orderId, Product product, int count){
         this.orderId= orderId;
         this.product=product;
         this.count=count;

@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class Account{
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "account_generator")
+    @SequenceGenerator(name="account_generator",sequenceName = "account_seq",allocationSize =1)
     private Long id;
     @Column
     private String login;
@@ -81,7 +82,7 @@ public class Account{
 
 
     public Long getId() {
-        return null;
+        return id;
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.*;
 public class TestDataGenerator {
     private static String JDBC_URL = "jdbc:postgresql://localhost:5432/hookahstore";
     private static String JDBC_USERNAME = "hookahstore";
-    private static String JDBC_PASSWORD = "34525";
+    private static String JDBC_PASSWORD = "toor";
 
     private static String IMG_PATH = "external/test-data/";
     private static String MEDIA_PATH = "src/main/webapp/media/";
@@ -156,9 +156,9 @@ public class TestDataGenerator {
                 idMap.put(category.name, i);
                 ps.setInt(1, i++);
                 ps.setString(2, category.name);
-                ps.setInt(3, category.getProductCount());
-                ps.setString(4, "/" + capitalize(category.name).toLowerCase());
-                ps.setString(5, category.ruName);
+                ps.setInt(4, category.getProductCount());
+                ps.setString(5, "/" + capitalize(category.name).toLowerCase());
+                ps.setString(3, category.ruName);
                 ps.addBatch();
             }
             ps.executeBatch();
@@ -185,13 +185,13 @@ public class TestDataGenerator {
             for (Product product : products) {
                 ps.setInt(1, i);
                 ps.setString(2, product.name);
-                ps.setInt(3, product.idProducer);
-                ps.setInt(4, product.idCategory);
+                ps.setInt(4, product.idProducer);
+                ps.setInt(3, product.idCategory);
                 ps.setString(5, product.imageLinkLarge);
-                ps.setString(6, generateDescription(categories.get(product.idCategory - 1)));
+                ps.setString(8, generateDescription(categories.get(product.idCategory - 1)));
                 ps.setInt(7, (RANDOM.nextInt(200) * 10) + 1000);
-                ps.setInt(8, product.count);
-                ps.setString(9, product.imageLinkSmall);
+                ps.setInt(9, product.count);
+                ps.setString(6, product.imageLinkSmall);
                 ps.addBatch();
                 i++;
             }

@@ -102,12 +102,12 @@
                                                             <c:choose>
                                                                 <c:when test="${CURRENT_ACCOUNT==null}">
                                                                     <div class="wc-proceed-to-checkout">
-                                                                        <a href="/login" class="checkout-button button alt wc-forward">Войти</a>
+                                                                        <a href="/account/login" class="checkout-button button alt wc-forward">Войти</a>
                                                                     </div>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <div class="wc-proceed-to-checkout">
-                                                                        <a href="javascript:void(0);" data-url="/order" class="post-request checkout-button button alt wc-forward">Сделать заказ</a>
+                                                                        <a href="javascript:void(0);" data-url="/account/makeOrder" class="post-request checkout-button button alt wc-forward">Сделать заказ</a>
                                                                     </div>
                                                                 </c:otherwise>
                                                             </c:choose>

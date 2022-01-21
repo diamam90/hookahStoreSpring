@@ -92,7 +92,7 @@
 
 
                                             <li class="one-column menu-my-cart">
-                                                <a href="/sign-out">
+                                                <a href="/account/sign-out">
                                                     <span class="have-title">
                                                         <span class="menu-title">Выйти</span>
                                                     </span>
@@ -132,7 +132,7 @@
                                 <strong>Sign in Or Register</strong>
                             </div>
 
-                            <form class="login" action="/login" method="post">
+                            <form class="login" action="/account/login" method="post">
                                 <div class="block-content" style="height: 238px;">
                                     <div class="col-reg registered-account">
                                         <div class="email-input">

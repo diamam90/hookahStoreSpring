@@ -4,6 +4,6 @@ import net.company.hookahstore.entity.Account;
 import net.company.hookahstore.model.CurrentAccount;
 
 public interface AccountService {
-    Account getAccount(String login, String password);
+    CurrentAccount getCurrentAccount(String login, String password);
     void saveAccount(Account account);
 }
