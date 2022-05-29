@@ -1,11 +1,13 @@
 package net.company.hookahstore.controller;
 
+import com.sun.xml.bind.v2.TODO;
 import net.company.hookahstore.Constants;
-import net.company.hookahstore.DTO.UpdateProductFromShoppingCartDTO;
+import net.company.hookahstore.DTO.ShoppingCartDTO;
 import net.company.hookahstore.entity.Order;
 import net.company.hookahstore.form.ProductForm;
 import net.company.hookahstore.model.CurrentAccount;
 import net.company.hookahstore.model.ShoppingCart;
+import net.company.hookahstore.service.NotificationManagerService;
 import net.company.hookahstore.service.OrderService;
 import net.company.hookahstore.utils.SessionUtils;
 import org.slf4j.Logger;
@@ -27,42 +29,58 @@ public class OrderController {
     private static Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
-    OrderService orderService;
+    public OrderService orderService;
+    @Autowired
+    public NotificationManagerService notificationManagerService;
 
     @PostMapping(value = "/ajax/json/product/add")
     @ResponseBody
-    public UpdateProductFromShoppingCartDTO addProductToShoppingCart(@ModelAttribute("productForm") ProductForm productForm, HttpServletRequest req, HttpServletResponse resp) {
+    public ShoppingCartDTO addProductToShoppingCart(@ModelAttribute("productForm") ProductForm productForm, HttpServletRequest req, HttpServletResponse resp) {
         ShoppingCart shoppingCart = SessionUtils.getCurrentShoppingCart(req);
         orderService.addProductToShoppingCart(productForm, shoppingCart);
         String cookie = orderService.serializeShoppingCart(shoppingCart);
         SessionUtils.updateCurrentShoppingCartCookie(cookie, resp);
         LOGGER.info("Product id:{} , count:{} has been added to Shopping Cart",
                 productForm.getIdProduct(), productForm.getCount());
-        return new UpdateProductFromShoppingCartDTO(shoppingCart);
+        return new ShoppingCartDTO(shoppingCart);
     }
 
     @PostMapping(value = "/ajax/json/shopping-cart/update")
     @ResponseBody
-    public UpdateProductFromShoppingCartDTO updateShoppingCart(@ModelAttribute("productForm") ProductForm productForm, HttpServletRequest req, HttpServletResponse resp) {
+    public ShoppingCartDTO updateShoppingCart(@ModelAttribute("productForm") ProductForm productForm, HttpServletRequest req, HttpServletResponse resp) {
         ShoppingCart shoppingCart = SessionUtils.getCurrentShoppingCart(req);
         orderService.updateShoppingCart(productForm, shoppingCart);
         String cookie = orderService.serializeShoppingCart(shoppingCart);
         SessionUtils.updateCurrentShoppingCartCookie(cookie, resp);
         LOGGER.info("Product id:{} , count:{} has been changed to Shopping Cart",
                 productForm.getIdProduct(), productForm.getCount());
-        return new UpdateProductFromShoppingCartDTO(shoppingCart);
+        return new ShoppingCartDTO(shoppingCart);
     }
 
     @PostMapping(value = "/ajax/json/product/delete")
     @ResponseBody
-    public UpdateProductFromShoppingCartDTO deleteProductFromShoppingCart(@ModelAttribute("productForm") ProductForm productForm, HttpServletRequest req, HttpServletResponse resp) {
+    public ShoppingCartDTO deleteProductFromShoppingCart(@ModelAttribute("productForm") ProductForm productForm, HttpServletRequest req, HttpServletResponse resp) {
         ShoppingCart shoppingCart = SessionUtils.getCurrentShoppingCart(req);
         orderService.removeProductFromShoppingCart(productForm, shoppingCart);
         String cookie = orderService.serializeShoppingCart(shoppingCart);
         SessionUtils.updateCurrentShoppingCartCookie(cookie, resp);
         LOGGER.info("Product id:{} , count:{} has been deleted to Shopping Cart",
                 productForm.getIdProduct(), productForm.getCount());
-        return new UpdateProductFromShoppingCartDTO(shoppingCart);
+        return new ShoppingCartDTO(shoppingCart);
+    }
+
+    @GetMapping("/validateShoppingCart")
+    public String test(HttpServletRequest req, HttpServletResponse resp){
+        SessionUtils.removeCurrentShoppingCart(req);
+        SessionUtils.clearShoppingCartCookie(req,resp);
+        //        CurrentAccount testAccount = new CurrentAccount();
+//        testAccount.setId(4l);
+//        testAccount.setName("Дима");
+//        testAccount.setPhone("9312830123");
+//        testAccount.setEmail("diamam90@yandex.ru");
+//        notificationManagerService.sendPasswordChanged(testAccount);
+//        notificationManagerService.sendPasswordChanged((CurrentAccount)session.getAttribute(Constants.CURRENT_ACCOUNT));
+        return "page-template";
     }
 
     @GetMapping(value = "/shopping-cart")
@@ -73,34 +91,51 @@ public class OrderController {
         return model;
     }
 
+    // FIXME cookie doesn't remove;
     @PostMapping(value="/account/makeOrder")
-    public String makeOrder(HttpServletRequest req){
+    public String makeOrder(HttpServletRequest req,HttpServletResponse resp){
         if (SessionUtils.isCurrentAccountCreated(req)){
             CurrentAccount currentAccount = SessionUtils.getCurrentAccount(req);
             Long idOrder = orderService.makeOrder(SessionUtils.getCurrentShoppingCart(req),currentAccount);
-            SessionUtils.clearCurrentShoppingCart(req);
+            SessionUtils.removeCurrentShoppingCart(req);
+
             LOGGER.info("order {} has been made by account {}",idOrder,currentAccount);
             return "redirect:/order/"+idOrder;
         } else {
-            return "redirect:/account/login";
+            return "redirect:/products";
         }
     }
 
     @GetMapping("/order/{id}")
     public String showOrder(@PathVariable("id")Long id, Model model,HttpServletRequest req){
-        if (SessionUtils.isCurrentAccountCreated(req)){
-            model.addAttribute("order",orderService.findOrderById(id,SessionUtils.getCurrentAccount(req)));
-            model.addAttribute("currentPage","/WEB-INF/JSP/page/order.jsp");
-            return "page-template";
-        }
-        return "redirect:/error";
+//        if (SessionUtils.isCurrentAccountCreated(req)){
+//            model.addAttribute("order",orderService.findOrderById(id,SessionUtils.getCurrentAccount(req)));
+//            model.addAttribute("currentPage","/WEB-INF/JSP/page/order.jsp");
+//            return "page-template";
+//        }
+//        return "redirect:/error";
+        return null;
     }
 
     @GetMapping("/orders")
     public ModelAndView showMyOrders(HttpServletRequest req){
-        ModelAndView modelAndView = new ModelAndView("page-template");
-        modelAndView.addObject("currentPage","/WEB-INF/JSP/fragment/order-list.jsp");
-        Page<Order> orders = orderService.listMyOrders(SessionUtils.getCurrentAccount(req), PageRequest.of(getPage(req),Constants.MAX_ORDERS_PER_PAGE));
+//        ModelAndView modelAndView = new ModelAndView("page-template");
+//        if (!SessionUtils.isCurrentAccountCreated(req)){
+//            modelAndView.setViewName("redirect:/products");
+//        }  else{
+//            modelAndView.addObject("currentPage","page/my-orders.jsp");
+//            Page<Order> orders = orderService.listMyOrders(SessionUtils.getCurrentAccount(req), PageRequest.of(getPage(req),Constants.MAX_ORDERS_PER_PAGE));
+//            modelAndView.addObject("orderList",orders.getContent());
+//            modelAndView.addObject("page",orders);
+//        }
+//        return modelAndView;
+        return null;
+    }
+
+    @GetMapping("/ajax/html/orders/more")
+    public ModelAndView showMoreOrders(HttpServletRequest req){
+        ModelAndView modelAndView = new ModelAndView("fragment/order-list");
+        Page<Order> orders = orderService.listMyOrders(SessionUtils.getCurrentAccount(req),PageRequest.of(getPage(req),Constants.MAX_ORDERS_PER_PAGE));
         modelAndView.addObject("orderList",orders.getContent());
         modelAndView.addObject("page",orders);
         return modelAndView;

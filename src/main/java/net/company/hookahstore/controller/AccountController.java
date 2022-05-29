@@ -34,7 +34,7 @@ public class AccountController {
         CurrentAccount currentAccount = accountService.getCurrentAccount(accountForm.getLogin(), accountForm.getPassword());
         if (currentAccount!=null) {
             session.setAttribute(Constants.CURRENT_ACCOUNT, currentAccount);
-            if (SessionUtils.getCurrentShoppingCart(req) != null) {
+            if (SessionUtils.getCurrentShoppingCart(req).getTotalCount() != 0) {
                 return "redirect:/shopping-cart";
             }
         }
@@ -61,7 +61,7 @@ public class AccountController {
         return "redirect:/products";
     }
 
-    public Account getAccountFromForm(AccountForm accountForm){
+    private Account getAccountFromForm(AccountForm accountForm){
         Account account = new Account();
         account.setName(accountForm.getName());
         account.setLogin(accountForm.getLogin());

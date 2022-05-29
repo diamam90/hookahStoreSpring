@@ -71,54 +71,59 @@
                         <!-- END CURRENCY -->
 
                         <!-- USER ACCOUNT -->
-                        <c:if test="${CURRENT_ACCOUNT!=null}">
-                            <div class="block-action-header top-link-account my-account-link my-account-link-other pull-right">
-                                <ul id="menu-my-account" class="menu">
-                                    <li class="dropdown menu-my-account ya-menu-custom level1">
-                                        <a href="#" class="item-link dropdown-toggle">
+                        <c:choose>
+                            <c:when test="${CURRENT_ACCOUNT!=null}">
+                                <div class="block-action-header top-link-account my-account-link my-account-link-other pull-right">
+                                    <ul id="menu-my-account" class="menu">
+                                        <li class="dropdown menu-my-account ya-menu-custom level1">
+                                            <a href="#" class="item-link dropdown-toggle">
                                         <span class="have-title">
                                             <span class="menu-title">${CURRENT_ACCOUNT.name}</span>
                                         </span>
-                                        </a>
+                                            </a>
 
-                                        <ul class="dropdown-menu nav-level1 one-column ">
-                                            <li class="one-column menu-checkout">
-                                                <a href="/orders">
+                                            <ul class="dropdown-menu nav-level1 one-column ">
+                                                <li class="one-column menu-checkout">
+                                                    <a href="/orders">
                                                 <span class="have-title">
                                                     <span class="menu-title">Мои заказы</span>
                                                 </span>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
 
 
-                                            <li class="one-column menu-my-cart">
-                                                <a href="/account/sign-out">
+                                                <li class="one-column menu-my-cart">
+                                                    <a href="/account/sign-out">
                                                     <span class="have-title">
                                                         <span class="menu-title">Выйти</span>
                                                     </span>
-                                                </a>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </c:when>
+
+                            <c:otherwise>
+                                <div class="block-action-header top-link-account login-link pull-right">
+                                    <div class="top-login pull-left">
+                                        <ul>
+                                            <li>
+                                                <a href="javascript:void(0);" data-toggle="modal"
+                                                   data-target="#login_form"><span>Login</span></a>
                                             </li>
                                         </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </c:if>
+                                    </div>
+                                </div>
+
+                                <div class="widget-6 widget rev-slider-widget-2 widget_revslider">
+                                    <div class="widget-inner"></div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
 
 
-                        <div class="block-action-header top-link-account login-link pull-right">
-                            <div class="top-login pull-left">
-                                <ul>
-                                    <li>
-                                        <a href="javascript:void(0);" data-toggle="modal"
-                                           data-target="#login_form"><span>Login</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="widget-6 widget rev-slider-widget-2 widget_revslider">
-                            <div class="widget-inner"></div>
-                        </div>
                         <!-- END USER ACCOUNT -->
                     </div>
 

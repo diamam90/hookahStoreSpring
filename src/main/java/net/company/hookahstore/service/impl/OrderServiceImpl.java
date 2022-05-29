@@ -1,6 +1,7 @@
 package net.company.hookahstore.service.impl;
 
 
+import net.company.hookahstore.configuration.ServiceConfig;
 import net.company.hookahstore.entity.Order;
 
 import net.company.hookahstore.entity.OrderItem;
@@ -16,15 +17,14 @@ import net.company.hookahstore.repository.OrderRepository;
 import net.company.hookahstore.service.OrderService;
 
 import net.company.hookahstore.service.ProductService;
-import net.company.hookahstore.utils.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -34,6 +34,7 @@ import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
 
     @Autowired
     public ProductService productService;
@@ -102,7 +103,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<Order> listMyOrders(CurrentAccount currentAccount, Pageable pageable) {
-        return orderRepository.findAllByIdAccount(currentAccount.getId(), pageable);
+        return orderRepository.findAllByIdAccountOrderByCreatedDesc(currentAccount.getId(), pageable);
     }
 
     @Override
@@ -137,4 +138,10 @@ public class OrderServiceImpl implements OrderService {
         }
         return shoppingCart;
     }
+
+    @Override
+    public void sendMail(){
+
+    }
+
 }

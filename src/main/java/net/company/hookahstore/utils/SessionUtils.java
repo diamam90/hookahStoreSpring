@@ -7,6 +7,8 @@ import net.company.hookahstore.model.ShoppingCart;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
+import java.util.Collections;
 
 public class SessionUtils {
     public static ShoppingCart getCurrentShoppingCart(HttpServletRequest req){
@@ -23,12 +25,20 @@ public class SessionUtils {
     public static boolean isCurrentShoppingCartCreated(HttpServletRequest req){
         return req.getSession().getAttribute(Constants.CURRENT_SHOPPING_CART)!=null;
     }
-    public static void clearCurrentShoppingCart(HttpServletRequest req){
+    public static void removeCurrentShoppingCart(HttpServletRequest req){
         req.getSession().removeAttribute(Constants.CURRENT_SHOPPING_CART);
     }
+    public static void clearShoppingCartCookie(HttpServletRequest req, HttpServletResponse resp){
+        Cookie cookie = findShoppingCartCookie(req);
+        WebUtils.setCookie(Constants.Cookie.SHOPPING_CART.getName(), cookie.getValue(),0,resp);
+    }
+
+
+
     public static Cookie findShoppingCartCookie(HttpServletRequest req){
        return WebUtils.findCookie(req,Constants.Cookie.SHOPPING_CART.getName());
     }
+
     public static void updateCurrentShoppingCartCookie(String cookieValue, HttpServletResponse resp){
         WebUtils.setCookie(Constants.Cookie.SHOPPING_CART.getName(),cookieValue,Constants.Cookie.SHOPPING_CART.getTtl(),resp);
     }

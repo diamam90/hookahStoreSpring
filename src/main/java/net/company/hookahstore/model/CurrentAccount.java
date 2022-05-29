@@ -1,6 +1,14 @@
 package net.company.hookahstore.model;
 
-public class CurrentAccount {
+
+import net.company.hookahstore.Constants;
+import net.company.hookahstore.entity.Account;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import java.util.Collections;
+
+public class CurrentAccount extends User {
     private Long id;
     private String name;
     private String email;
@@ -38,15 +46,14 @@ public class CurrentAccount {
         this.phone = phone;
     }
 
-    public CurrentAccount() {
+
+    public CurrentAccount(Account account) {
+        super(account.getName(), account.getPassword(),  Collections.singleton(new SimpleGrantedAuthority(Constants.USER)));
+        this.id= account.getId();
+        this.email=account.getEmail();
+        this.phone=account.getPhone();
     }
 
-    public CurrentAccount(Long id, String name, String email, String phone) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-    }
 
     @Override
     public String toString() {

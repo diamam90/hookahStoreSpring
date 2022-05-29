@@ -2,6 +2,7 @@ package net.company.hookahstore.configuration;
 
 
 import net.company.hookahstore.interceptor.ShoppingCartInterceptor;
+import org.hibernate.event.internal.EvictVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

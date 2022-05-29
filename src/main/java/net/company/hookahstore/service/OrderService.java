@@ -6,6 +6,7 @@ import net.company.hookahstore.model.CurrentAccount;
 import net.company.hookahstore.model.ShoppingCart;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 
 import java.util.List;
@@ -20,4 +21,5 @@ public interface OrderService {
     Order findOrderById(long id,CurrentAccount currentAccount);
     Page<Order> listMyOrders(CurrentAccount currentAccount, Pageable pageable);
     int countMyOrders(CurrentAccount currentAccount);
+    void sendMail();
 }

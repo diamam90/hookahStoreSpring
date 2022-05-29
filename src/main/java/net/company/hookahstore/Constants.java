@@ -11,6 +11,8 @@ public class Constants {
     public final static String CURRENT_SHOPPING_CART = "CURRENT_SHOPPING_CART";
     public final static String CURRENT_ACCOUNT = "CURRENT_ACCOUNT";
     public final static String SUCCESS_REDIRECT_AFTER_SIGNIN = "SUCCESS_REDIRECT_AFTER_SIGNIN";
+    public final static String USER="USER";
+    public final static String ADMIN="ADMIN";
 
     public enum Cookie {
         //1 year ttl

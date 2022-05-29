@@ -245,6 +245,16 @@
             }
         });
     }
+
+    var loadMoreOrders = function(){
+        $.ajax({
+            url:'/ajax/html/orders/more',
+            success: function(html){
+                $(document).append(html);
+            }
+        })    }
+
+
     var initBtn = function () {
         $('a[title="Quick View Product"]').click(showPopup);
         $('input[name="update_cart"]').click(updateCart);
@@ -277,7 +287,7 @@
             }
             return false;
         });
-
+        $('#loadMoreOrders').click(loadMoreOrders());
 
         $(".wpb_accordion").each(function (element) {
             var $this = $(this);

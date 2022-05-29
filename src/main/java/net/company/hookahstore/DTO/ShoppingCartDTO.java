@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdateProductFromShoppingCartDTO {
+public class ShoppingCartDTO {
     private Integer totalCount;
     private BigDecimal totalCost;
     private Map<Long,BigDecimal> subTotalMap;
     private Map<Long,Integer> countMap;
 
-    public UpdateProductFromShoppingCartDTO(ShoppingCart shoppingCart){
+    public ShoppingCartDTO(ShoppingCart shoppingCart){
         subTotalMap=new HashMap<>();
         countMap = new HashMap<>();
         this.totalCount =shoppingCart.getTotalCount();
@@ -57,7 +57,7 @@ public class UpdateProductFromShoppingCartDTO {
         this.subTotalMap = subTotalMap;
     }
 
-    public UpdateProductFromShoppingCartDTO() {
+    public ShoppingCartDTO() {
     }
 
     @Override
